@@ -24,6 +24,9 @@ public class Staff extends Account {
      {
         // Code to add a book to the library and save in file
         //adding to the Book database hurray
+         return new Book("", "", 0);
+         
+         // delete this line later, meant to stop error
      }
     
      //tentative parameters: int bookID, boolean isReserved
