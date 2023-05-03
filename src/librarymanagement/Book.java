@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * @author szakr
  * @author kmega
+ * @author hqara
  */
 
 public class Book {
@@ -41,6 +42,40 @@ public class Book {
         // to modify later, I am using this for a test
         count ++;
         return count;
+    }
+    
+     // Getter methods
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getBookID() {
+        return bookID;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    // Setter methods
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public boolean serialize()

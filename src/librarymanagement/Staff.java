@@ -7,27 +7,21 @@ package librarymanagement;
 import java.util.Hashtable;
 /**
  *
- * @author szakr
+ * @author hqara
  */
 public class Staff extends Account {
-
-    //private Hashtable<Integer, Book> books;  
-    //private Hashtable<String, User> members;
-    //May be alternatively <String, Book> or <String, User>
     
      public Staff(String accountID, String password) 
      {
         super(accountID, password);
+        Library.staffDatabase.put(Integer.parseInt(accountID), this);
      }
     
-     public Book addBook(Book book) 
+     public void addBook(Book book) 
      {
-        // Code to add a book to the library and save in file
-        //adding to the Book database hurray
-         return new Book("", "", 0); 
-       
-         
-         // delete this line later, meant to stop error
+        Library.bookDatabase.put(book.getBookID(), book);
+        //Library.reserialize();
+        System.out.println(book.getTitle()+ " #"+book.getBookID()+" was added to the Library!");
      }
     
      //tentative parameters: int bookID, boolean isReserved
@@ -37,9 +31,11 @@ public class Staff extends Account {
      }
    
     //tentative parameters: all properties from Book Class
-     public void modifyBook() 
+     public void modifyBook(int bookId, Book book) 
      {
-        // Code to modify book information
+             Library.bookDatabase.remove(bookId);
+             Library.bookDatabase.put(book.getBookID(), book);
+             //Library.reserialize();
      }
 
     //tentative parameters: int bookId and List <User> members?
@@ -54,3 +50,4 @@ public class Staff extends Account {
     }
 
 }
+

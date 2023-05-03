@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author kmega
  */
 public class Library {
-    //HIBBA TESTING
+
     public static Library instance = null;
     
     static Hashtable<Integer, Book> bookDatabase = new Hashtable<>();
@@ -32,7 +32,7 @@ public class Library {
 
     private Library()
     {
-        // ?
+ 
     }
 
     public static Library getLibrary()

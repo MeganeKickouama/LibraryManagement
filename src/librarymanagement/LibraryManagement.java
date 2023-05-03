@@ -43,6 +43,9 @@ public class LibraryManagement {
         Book test = new Book("Twilight", "Stephanie Meyer", 22);
         Library.serialize(bookDatabaseFile);
         
+        Staff staff = new Staff("123435", "password");
+        staff.addBook(test);
+        
         //Library.reserialize();
     }
     
