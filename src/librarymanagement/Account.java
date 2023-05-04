@@ -29,6 +29,16 @@ public class Account {
         // Code to search for a book in the library
      }
     
+    public String getAccountID()
+    {
+        return accountID;
+    }
+    
+    public String getPassword()
+    {
+        return password;
+    }
+    
     //Will add getters and setters for all fields later
     @Override
     public String toString() {

@@ -14,13 +14,12 @@ public class Staff extends Account {
      public Staff(String accountID, String password) 
      {
         super(accountID, password);
-        Library.staffDatabase.put(Integer.parseInt(accountID), this);
      }
     
      public void addBook(Book book) 
      {
-        Library.bookDatabase.put(book.getBookID(), book);
-        //Library.reserialize();
+        Library.books().put(book.getBookID(), book);
+        Library.serialize("JSON_Database/bookDatabase.json", Library.books());
         System.out.println(book.getTitle()+ " #"+book.getBookID()+" was added to the Library!");
      }
     
@@ -33,8 +32,8 @@ public class Staff extends Account {
     //tentative parameters: all properties from Book Class
      public void modifyBook(int bookId, Book book) 
      {
-             Library.bookDatabase.remove(bookId);
-             Library.bookDatabase.put(book.getBookID(), book);
+             Library.books().remove(bookId);
+             Library.books().put(book.getBookID(), book);
              //Library.reserialize();
      }
 
@@ -49,5 +48,17 @@ public class Staff extends Account {
         // Code to add a member 
     }
 
+    public void deleteBook(Book book)
+    {
+       int id = book.getBookID();
+       deleteBook(id);
+       
+    }
+    
+    public void deleteBook(int id)
+    {
+        Library.books().remove(id);
+        Library.serialize("JSON_Database/bookDatabase.json", Library.books());
+    }
 }
 

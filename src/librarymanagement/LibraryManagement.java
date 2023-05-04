@@ -33,20 +33,27 @@ public class LibraryManagement {
         };
         
         for (String account : accounts) {
-            acc = loginFact.createAccountType(account);
+            //acc = loginFact.createAccountType(account);
             
         }
         //System.out.println("Supplier");
         //System.out.println("Key\t\tAccount ID      Password");
         //System.out.println(Library.supplierDatabase);
-
-        Book test = new Book("Twilight", "Stephanie Meyer", 22);
-        Library.serialize(bookDatabaseFile);
+                                                                                
+        //Book test = new Book("Megane", "Stephanie Meyer", 22);
+        //Library.serialize("JSON_Database/bookDatabase.json", Library.bookDatabase);
         
         Staff staff = new Staff("123435", "password");
-        staff.addBook(test);
+        //staff.addBook(test);
         
-        //Library.reserialize();
+        //Library.deserialize("JSON_Database/bookDatabase.json", Library.books());
+        //System.out.print(Library.books().toString());
+        
+        staff.addBook(new Book("TEST", "TEST AUTHOR", 0, 8));
+        System.out.print(Library.books().toString());
+        
+        staff.deleteBook(Library.books().get(8)); // get(1) should not be null, 
+        System.out.print("\n"+ Library.books().toString());
     }
     
 }

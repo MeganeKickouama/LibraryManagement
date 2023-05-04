@@ -26,21 +26,18 @@ public class Book {
     private int price;
     private static int count = 0;
 
-    public Book(String title, String author, int price)
+    public Book(String title, String author, int price, int id)
     {
-        this.bookID = nextID();
+        this.bookID = id;
         this.title = title;
         this.author = author;
         this.price = price;
-
-        //serialize();
-        Library.bookDatabase.put(bookID, this);
     }
 
     public static int nextID()
     {
         // to modify later, I am using this for a test
-        count ++;
+        count++;
         return count;
     }
     
@@ -77,23 +74,10 @@ public class Book {
     public void setPrice(int price) {
         this.price = price;
     }
-
-    public boolean serialize()
+    
+    @Override
+    public String toString()
     {
-        String data;
-        try 
-        {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            // makes it so that you don't need a setter or getter
-            data = mapper.writeValueAsString(this);
-            System.out.println(data);
-        } 
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        return false;
+       return String.format("ID=%d, Title=%s, Author=%s, Price=%d", bookID, title, author, price); 
     }
 }

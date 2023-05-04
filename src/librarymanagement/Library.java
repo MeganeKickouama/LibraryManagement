@@ -6,6 +6,7 @@ package librarymanagement;
 
 import java.util.Hashtable;
 import java.io.*;
+import java.nio.file.Paths;
 import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -22,13 +23,10 @@ public class Library {
 
     public static Library instance = null;
     
-    static Hashtable<Integer, Book> bookDatabase = new Hashtable<>();
-    static Hashtable<Integer, Account> userDatabase = new Hashtable<>();
-    static Hashtable<Integer, Account> supplierDatabase = new Hashtable<>();
-    static Hashtable<Integer, Account> staffDatabase = new Hashtable<>();
-
-
-    static final String databaseFile = "";
+    private static Hashtable<Integer, Book> bookDatabase = new Hashtable<>();
+    private static Hashtable<Integer, Account> userDatabase = new Hashtable<>();
+    private static Hashtable<Integer, Account> supplierDatabase = new Hashtable<>();
+    private static Hashtable<Integer, Account> staffDatabase = new Hashtable<>();
 
     private Library()
     {
@@ -46,71 +44,78 @@ public class Library {
     }
 
     // to convert obj to JSONobj
-    public static void serialize(File file)
+    public static void serialize(String file, Hashtable database)
     {
-        // to parse (e.g. book class json file)
-        /*
-         * List<Book> books = objectMapper.readValue(new File("file.json"), new TypeReference<List<Book>>() {})
-         */
-        // TODO WRITE TO FILE 
-        // TODO DO THE SAME FOR THE 3 OTHER HASHTABLES
         try 
         {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            // makes it so that you don't need a setter or getter
-            String json = mapper.writeValueAsString(bookDatabase);
-            //mapper.writeValue(file, json);
-            System.out.println(json); // change to write to file
+            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY); // makes it so that you don't need a setter or getter
+            mapper.writeValue(Paths.get(file).toFile(), database);
 
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-
+    
     // to convert the json file to a hashtable
-    public void deserialize(File file)
+    public static void deserialize(String file, Hashtable database)
     {
-
         // TODO WRITE TO FILE 
         // TODO DO THE SAME FOR THE 3 OTHER HASHTABLES
         try 
         {
-            Hashtable<Integer, Book> temp = bookDatabase;
-            bookDatabase.clear();
+            database.clear();
             ObjectMapper mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             // makes it so that you don't need a setter or getter
-            bookDatabase = mapper.readValue(
-                file, new TypeReference<Hashtable<Integer, Book>>() {});
+            
+            if (file.contains("book"))
+            {
+                Hashtable<Integer, Book> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                database.putAll(temp);
+            }
+            else if (file.contains("staff") || file.contains("user") || file.contains("supplier"))
+            {
+                Hashtable<String, Account> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                database.putAll(temp);
+            }
+            else 
+            {
+                Hashtable temp = null;
+                database.putAll(temp);
+            } 
         } 
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-
+    
     // for when an element is either deleted or added
-    public static void reserialize()
+    public static void remove(int id)
     {
-        // to parse (e.g. book class json file)
-        /*
-         * List<Book> books = objectMapper.readValue(new File("file.json"), new TypeReference<List<Book>>() {})
-         */
-        // TODO WRITE TO FILE 
-        // TODO DO THE SAME FOR THE 3 OTHER HASHTABLES
-        try 
-        {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            // makes it so that you don't need a setter or getter
-            String json = mapper.writeValueAsString(bookDatabase);
-            System.out.println(json); // change to write to file
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        
+    }
+    
+    /* DATABASE GETTERS */
+    public static Hashtable<Integer, Book> books()
+    {
+        return bookDatabase;
+    }
+    
+    public static Hashtable<Integer, Account> staffs()
+    {
+        return staffDatabase;
+    }
+    
+    public static Hashtable<Integer, Account> suppliers()
+    {
+        return supplierDatabase;
+    }
+    
+    public static Hashtable<Integer, Account> users()
+    {
+        return userDatabase;
     }
 }
