@@ -16,8 +16,8 @@ class LogInFactory{
     
         static public Account createAccountType(int accountId) 
         {
-        String accountIdStr = String.valueOf(accountId);
-            if (accountIdStr.charAt(0) == '1') {
+            String accountIdStr = String.valueOf(accountId);
+            if (accountIdStr.startsWith("1"))  {
                  Account s = new Staff(accountId, "Abc123", "hibba", "qaraman");
                  Library.staffs().put(accountId, s);
                  return s; 

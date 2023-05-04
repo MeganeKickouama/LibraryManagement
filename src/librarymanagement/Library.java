@@ -97,25 +97,29 @@ public class Library {
     {
          Library.users().put(user.getAccountID(), user);
          Library.serialize("JSON_Database/userDatabase.json", Library.users());
+         System.out.println("User ID=" + user.getAccountID() + " was added to the Library database.");
     }
     
     public static void addStaff(Staff staff)
     {
          Library.staffs().put(staff.getAccountID(), staff);
          Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());
+         System.out.println("Staff ID=" + staff.getAccountID() + " was added to the Library database");
     }
     
     public static void addSupplier(Supplier supplier)
     {
          Library.suppliers().put(supplier.getAccountID(), supplier);
          Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());
+         System.out.println("Supplier ID=" + supplier.getAccountID() + "was added to the Library database.");
     }
     
     public static void removeUser(int userId)
     {
         if (Library.users().containsKey(userId)) {
             Library.users().remove(userId);
-            Library.serialize("JSON_Database/userDatabase.json", Library.users());  
+            Library.serialize("JSON_Database/userDatabase.json", Library.users());
+            System.out.println("User ID=" + userId + "was removed from the Library database.");
         } else {
             System.out.println("User ID=" + userId + " does not exist in the Library database.");
         }
@@ -124,20 +128,22 @@ public class Library {
     public static void removeStaff(int staffId)
     {
          if (Library.staffs().containsKey(staffId)) {
-            Library.users().remove(staffId);
-            Library.serialize("JSON_Database/staffDatabase.json", Library.users());  
+            Library.staffs().remove(staffId);
+            Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());  
+            System.out.println("Staff ID=" + staffId + "was removed from the Library database.");
         } else {
-            System.out.println("User ID=" + staffId + " does not exist in the Library database.");
+            System.out.println("Staff ID=" + staffId + " does not exist in the Library database.");
         }
     }
     
     public static void removeSupplier(int supplierId)
     {
           if (Library.suppliers().containsKey(supplierId)) {
-            Library.users().remove(supplierId);
+            Library.suppliers().remove(supplierId);
             Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());  
+            System.out.println("Supplier ID=" + supplierId + "was removed from the Library database.");
         } else {
-            System.out.println("User ID=" + supplierId + " does not exist in the Library database.");
+            System.out.println("Supplier ID=" + supplierId + " does not exist in the Library database.");
         }
     }
     

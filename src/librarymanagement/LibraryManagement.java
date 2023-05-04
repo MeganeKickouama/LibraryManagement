@@ -66,11 +66,16 @@ public class LibraryManagement {
         searchBook(1);
         searchBook(2);
         
-        System.out.println("\nAdding a member to userDatabase.json:");
+        System.out.println("\nAdding a non member user to userDatabase.json:");
         User usertest = new User(321123,"password","sarah","colantani");
         Library.addUser(usertest);
+        System.out.println(Library.users().toString());;
+        
+        System.out.println("\nAdding a staff employee to staffDatabase.json:");
         Staff stafftest = new Staff(12234, "password", "hibba","qaraman");
         Library.addStaff(stafftest);
+        System.out.println(Library.staffs().toString());
+        
         usertest.applyForMembership(); 
         stafftest.addMember(usertest);
         System.out.println("\nStaff employee updating user Status from nonMember to Member:\n" 
