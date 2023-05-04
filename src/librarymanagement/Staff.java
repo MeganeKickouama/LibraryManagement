@@ -30,7 +30,7 @@ public class Staff extends Account {
         // Code to mark a book as reserved or not reserved
      }
    
-    //tentative parameters: all properties from Book Class
+  
      public void modifyBook(int bookId, Book book) 
      {
              Library.books().remove(bookId);

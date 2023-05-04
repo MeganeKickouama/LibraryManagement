@@ -23,13 +23,12 @@ public class Account {
     }
 
     public static void searchBook(int bookId) {
-    for (Book book : Library.books().values()) {
-        if (book.getBookID() == bookId) {
-            System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+        if (Library.books().containsKey(bookId)) {
+           Book book = Library.books().get(bookId);
+           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
             return;
         }
-    }
-    System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
 
     // Getter methods
