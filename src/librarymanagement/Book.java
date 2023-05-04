@@ -19,10 +19,6 @@ public class Book {
     private int price;
     private static int count = 0;
     protected boolean isAvailable = true;
-    
-    //need fields to  borrow a book & return a book
-    //like
-    //private boolean isBookAvailable or isBookReserved
         
     public Book(int id, String title, String author, int price)
     {

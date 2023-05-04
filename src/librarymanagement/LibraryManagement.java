@@ -83,10 +83,18 @@ public class LibraryManagement {
         
         System.out.println("");
         
-        System.out.println("Borrow Book Test");
+        System.out.println("Borrow Book Test"); //Sarah testing
         usertest.borrowBook(2, "hibba");
         usertest.borrowBook(2, "sarah");
         usertest.borrowBook(1, "megane");
+        
+        System.out.println("");
+        
+        System.out.println("Return Book Test"); //Sarah testing
+        usertest.returnBook(2, "hibba");
+        usertest.returnBook(2, "sarah");
+        usertest.borrowBook(2, "sarah");
+        usertest.returnBook(1, "megane");
 
     }
     

@@ -39,8 +39,7 @@ public class User extends Account{
         this.isMember = true;
     }
     
-    //Code to borrow a book
-     public void borrowBook(int bookID, String borrowerName)
+    public void borrowBook(int bookID, String borrowerName)
     {
         if (!Library.books().containsKey(bookID)) {
             System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
@@ -71,9 +70,18 @@ public class User extends Account{
     }
 
     //Return a book
-    public void returnBook(Book title, String userName)
+    public void returnBook(int bookID, String borrowerName)
     {
-        //Code to return a book
+        if (!Library.books().containsKey(bookID)) {
+            System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
+        }
+        else if (Library.books().get(bookID).isAvailable == true) {
+        System.out.println("The book " + getBookTitleByID(bookID) + " has not been borrowed yet.");
+        }
+        else{
+            Library.updateBookAvailability(bookID, true);
+            System.out.println("The book " + getBookTitleByID(bookID) + " has been returned by " + borrowerName + ".");
+        }
     }
     
     // Getter methods
