@@ -39,13 +39,25 @@ public class User extends Account{
         this.isMember = true;
     }
     
-     public void borrowBook()
+    //Code to borrow a book
+     public void borrowBook(int bookId, String bookTitle, String userName)
     {
-        //Code to borrow a book
+        if (!isBookAvailable(bookId)) {
+        System.out.println("Sorry, the book " + bookTitle + " is not available.");
+        }
     }
     
+    public boolean isBookAvailable(int bookId) {
+    Book book = Library.books().get(bookId);
+        if (book == null) {
+            return false;
+        }
+
+        return book.isAvailable;
+    }
+
     //Return a book
-    public void returnBook()
+    public void returnBook(Book title, String userName)
     {
         //Code to return a book
     }
