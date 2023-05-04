@@ -80,6 +80,13 @@ public class LibraryManagement {
         stafftest.addMember(usertest);
         System.out.println("\nStaff employee updating user Status from nonMember to Member:\n" 
                 + Library.users().toString());
+        
+        System.out.println("");
+        
+        System.out.println("Borrow Book Test");
+        usertest.borrowBook(2, "hibba");
+        usertest.borrowBook(2, "sarah");
+        usertest.borrowBook(1, "megane");
 
     }
     

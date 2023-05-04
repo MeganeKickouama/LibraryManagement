@@ -40,20 +40,34 @@ public class User extends Account{
     }
     
     //Code to borrow a book
-     public void borrowBook(int bookId, String bookTitle, String userName)
+     public void borrowBook(int bookID, String borrowerName)
     {
-        if (!isBookAvailable(bookId)) {
-        System.out.println("Sorry, the book " + bookTitle + " is not available.");
+        if (!Library.books().containsKey(bookID)) {
+            System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
+        }
+        else if (!Library.books().get(bookID).isAvailable) {
+            System.out.println("Sorry " + borrowerName + ", the book " + getBookTitleByID(bookID) + " is already borrowed by someone else.");
+        }
+        else{
+            Library.updateBookAvailability(bookID, false);
+            System.out.println(borrowerName + " is borrowing the book " + getBookTitleByID(bookID) + ".");
         }
     }
     
-    public boolean isBookAvailable(int bookId) {
-    Book book = Library.books().get(bookId);
-        if (book == null) {
-            return false;
+    public boolean isBookAvailable(int bookID) {
+        if (Library.books().containsKey(bookID)) {
+            Book book = Library.books().get(bookID);
+            return book.isAvailable;
         }
-
-        return book.isAvailable;
+        return false;
+    }
+    
+    public String getBookTitleByID(int bookID) {
+        if (Library.books().containsKey(bookID)) {
+            Book book = Library.books().get(bookID);
+            return book.getTitle();
+        }
+        return null;
     }
 
     //Return a book

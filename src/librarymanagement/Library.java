@@ -147,6 +147,14 @@ public class Library {
         }
     }
     
+    
+    public static void updateBookAvailability(int bookID, boolean isAvailable) {
+        if (books().containsKey(bookID)) {
+            Book book = books().get(bookID);
+            book.setIsAvailable(isAvailable);
+        }
+    }
+
     /* DATABASE GETTERS */
     public static Hashtable<Integer, Book> books()
     {

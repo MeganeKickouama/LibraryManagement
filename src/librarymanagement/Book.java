@@ -83,6 +83,14 @@ public class Book {
         this.price = price;
     }
     
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    
     @Override
     public String toString()
     {
