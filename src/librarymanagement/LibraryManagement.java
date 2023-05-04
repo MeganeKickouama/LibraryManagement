@@ -51,8 +51,8 @@ public class LibraryManagement {
         //System.out.print(Library.books().toString());
         
         //staff.addBook(new Book("TEST", "TEST AUTHOR", 0, 8));
-        staff.addBook(new Book(nextID(), "titleA", "authorA",8 ));
-        staff.addBook(new Book(nextID(), "titleB", "authorB",9 ));
+        staff.addBook(new Book(nextID(), "titleA", "authorA",8, 4 ));
+        staff.addBook(new Book(nextID(), "titleB", "authorB",9, 3 ));
         System.out.println("Inside bookDatabase.json after adding two books:\n"
                 +Library.books().toString());
         
@@ -60,7 +60,7 @@ public class LibraryManagement {
          System.out.println("Inside bookDatabase.json after modifying a book:\n"
                 +Library.books().toString());
         
-        Book sample = new Book(nextID(),"Nine Cats","Feverland",10);
+        Book sample = new Book(nextID(),"Nine Cats","Feverland",10, 7);
         staff.markBookReserved(sample);
          System.out.println("\nInside bookDatabase.json after an staff employee marked a book as reserved:\n"
                 +Library.books().toString());
@@ -109,7 +109,20 @@ public class LibraryManagement {
         usertest.returnBook(2, "sarah");
         usertest.borrowBook(2, "sarah");
         usertest.returnBook(1, "megane");
-
+        
+        System.out.println("\nAdding a supplier to supplierDatabase.json:");
+        Supplier suppliertest = new Supplier(1001, "password", "hani");
+        Library.addSupplier(suppliertest);
+        System.out.println(Library.suppliers().toString());
+        
+        System.out.println("");
+        
+        System.out.println("Sell Book Test"); //Sarah testing
+        suppliertest.sellBook(2, 2, 10);
+        System.out.println(Library.suppliers().toString());
+        
+        //Won't work because quantity is over book quantity
+        suppliertest.sellBook(3, 10, 10);
     }
     
 }
