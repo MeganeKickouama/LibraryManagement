@@ -4,14 +4,6 @@ package librarymanagement;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
- 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  *
  * @author szakr
@@ -26,7 +18,7 @@ public class Book {
     private int price;
     private static int count = 0;
 
-    public Book(String title, String author, int price, int id)
+    public Book( int id, String title, String author, int price)
     {
         this.bookID = id;
         this.title = title;

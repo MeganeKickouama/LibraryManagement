@@ -6,7 +6,8 @@ package librarymanagement;
  
 
 import java.io.*;
-import org.json.simple.JSONObject;
+import static librarymanagement.Account.searchBook;
+import static librarymanagement.Book.nextID;
 
 /**
  *
@@ -49,11 +50,19 @@ public class LibraryManagement {
         //Library.deserialize("JSON_Database/bookDatabase.json", Library.books());
         //System.out.print(Library.books().toString());
         
-        staff.addBook(new Book("TEST", "TEST AUTHOR", 0, 8));
-        System.out.print(Library.books().toString());
+        //staff.addBook(new Book("TEST", "TEST AUTHOR", 0, 8));
+        staff.addBook(new Book(nextID(), "titleA", "authorA",8 ));
+        staff.addBook(new Book(nextID(), "titleB", "authorB",9 ));
+        System.out.println("\nInside bookDatabase.json after adding two books:\n"+Library.books().toString());
         
-        staff.deleteBook(Library.books().get(8)); // get(1) should not be null, 
-        System.out.print("\n"+ Library.books().toString());
+        System.out.println();
+        staff.deleteBook(8); // get(1) should not be null, 
+        staff.deleteBook(1);
+        System.out.println("\nInside bookDatabase.json after deleting a book:\n"+ Library.books().toString());
+        
+        System.out.println("\nSearching for a book:");
+        searchBook(1);
+        searchBook(2);
     }
     
 }

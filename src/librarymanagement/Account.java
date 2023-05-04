@@ -8,6 +8,7 @@ package librarymanagement;
 /**
  *
  * @author szakr
+ * @author hqara
  */
 public class Account {
     
@@ -21,28 +22,36 @@ public class Account {
         this.password = password;
     }
 
-    
-     public Book searchBook(String bookTitle) 
-     {
-        // Code to search for a book in the library
-        return null;
-        // Code to search for a book in the library
-     }
-    
-    public String getAccountID()
-    {
+    public static void searchBook(int bookId) {
+    for (Book book : Library.books().values()) {
+        if (book.getBookID() == bookId) {
+            System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+            return;
+        }
+    }
+    System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+    }
+
+    // Getter methods
+    public String getAccountID() {
         return accountID;
     }
     
-    public String getPassword()
-    {
+      public String getPassword() {
         return password;
     }
+ 
+    // Setter methods
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
-    //Will add getters and setters for all fields later
     @Override
     public String toString() {
-        
         return "\t"+accountID+"\t\t"+password+"\n";
     }
 

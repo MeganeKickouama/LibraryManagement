@@ -8,6 +8,7 @@ import java.util.Hashtable;
 /**
  *
  * @author hqara
+ * @author kmega
  */
 public class Staff extends Account {
     
@@ -20,7 +21,7 @@ public class Staff extends Account {
      {
         Library.books().put(book.getBookID(), book);
         Library.serialize("JSON_Database/bookDatabase.json", Library.books());
-        System.out.println(book.getTitle()+ " #"+book.getBookID()+" was added to the Library!");
+        System.out.println(book.getTitle()+ " ID="+book.getBookID()+" was added to the Library database.");
      }
     
      //tentative parameters: int bookID, boolean isReserved
@@ -48,17 +49,30 @@ public class Staff extends Account {
         // Code to add a member 
     }
 
-    public void deleteBook(Book book)
+    /*public void deleteBook(Book book)
     {
        int id = book.getBookID();
        deleteBook(id);
        
-    }
+    }*/
     
-    public void deleteBook(int id)
+   /* public void deleteBook(int id)
     {
         Library.books().remove(id);
         Library.serialize("JSON_Database/bookDatabase.json", Library.books());
+    }*/
+    
+     
+    public void deleteBook(int bookId) {
+        if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
+            Library.books().remove(bookId);
+            Library.serialize("JSON_Database/bookDatabase.json", Library.books());
+            System.out.println("Book ID=" + bookId + "(" + book.getTitle() + ")" + " was removed from the Library database.");
+        } else {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        }
     }
+
 }
 
