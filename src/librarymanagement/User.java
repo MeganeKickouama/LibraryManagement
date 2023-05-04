@@ -9,6 +9,7 @@ package librarymanagement;
  *
  * @author szakr
  * @author hqara
+ * @author scol
  */
 public class User extends Account{
 

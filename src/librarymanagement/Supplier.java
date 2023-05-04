@@ -8,6 +8,7 @@ package librarymanagement;
 /**
  *
  * @author szakr
+ * @author scol
  */
 public class Supplier extends Account{
     

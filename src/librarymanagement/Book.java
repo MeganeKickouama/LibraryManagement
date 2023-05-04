@@ -9,6 +9,7 @@ package librarymanagement;
  * @author szakr
  * @author kmega
  * @author hqara
+ * @author scol
  */
 
 public class Book {
