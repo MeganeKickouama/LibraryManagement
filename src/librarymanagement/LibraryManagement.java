@@ -53,9 +53,18 @@ public class LibraryManagement {
         //staff.addBook(new Book("TEST", "TEST AUTHOR", 0, 8));
         staff.addBook(new Book(nextID(), "titleA", "authorA",8 ));
         staff.addBook(new Book(nextID(), "titleB", "authorB",9 ));
-        System.out.println("\nInside bookDatabase.json after adding two books:\n"
+        System.out.println("Inside bookDatabase.json after adding two books:\n"
                 +Library.books().toString());
         
+         staff.modifyBook(2, "Twilight", "Stephanie Meyer");
+         System.out.println("Inside bookDatabase.json after modifying a book:\n"
+                +Library.books().toString());
+        
+        Book sample = new Book(nextID(),"Nine Cats","Feverland",10);
+        staff.markBookReserved(sample);
+         System.out.println("\nInside bookDatabase.json after an staff employee marked a book as reserved:\n"
+                +Library.books().toString());
+         
         System.out.println();
         staff.deleteBook(8); // get(1) should not be null, 
         staff.deleteBook(1);
@@ -85,6 +94,9 @@ public class LibraryManagement {
         
         System.out.println("Borrow Book Test"); //Sarah testing
         usertest.borrowBook(2, "hibba");
+        System.out.println("Inside bookDatabase.json after hibba borrowed Book ID=2:\n"
+                +Library.books().toString());
+        
         usertest.borrowBook(2, "sarah");
         usertest.borrowBook(1, "megane");
         
@@ -92,6 +104,8 @@ public class LibraryManagement {
         
         System.out.println("Return Book Test"); //Sarah testing
         usertest.returnBook(2, "hibba");
+        System.out.println("Inside bookDatabase.json after hibba returned Book ID=2:\n"
+                +Library.books().toString());
         usertest.returnBook(2, "sarah");
         usertest.borrowBook(2, "sarah");
         usertest.returnBook(1, "megane");

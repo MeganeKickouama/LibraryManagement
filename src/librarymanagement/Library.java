@@ -151,7 +151,7 @@ public class Library {
     public static void updateBookAvailability(int bookID, boolean isAvailable) {
         if (books().containsKey(bookID)) {
             Book book = books().get(bookID);
-            book.setIsAvailable(isAvailable);
+            book.setAvailable(isAvailable);
         }
     }
 

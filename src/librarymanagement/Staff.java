@@ -19,73 +19,18 @@ public class Staff extends Account {
      {
         super(accountID, password);
         this.firstName=fname;
-        this.lastName=lname;
-        //Library.staff().put(super.getAccountID(),);
-        Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());
-        
+        this.lastName=lname; 
      }
-    
+     
      public void addBook(Book book) 
      {
         Library.books().put(book.getBookID(), book);
         Library.serialize("JSON_Database/bookDatabase.json", Library.books());
         System.out.println(book.getTitle()+ " ID="+book.getBookID()+" was added to the Library database.");
      }
-    
-     //tentative parameters: int bookID, boolean isReserved
-     public void markBookReserved() 
-     {
-        // Code to mark a book as reserved or not reserved
-     }
-   
-  
-     public void modifyBook(int bookId, Book book) 
-     {
-             Library.books().remove(bookId);
-             Library.books().put(book.getBookID(), book);
-             //Library.reserialize();
-     }
-
-    //tentative parameters: int bookId and List <User> members?
-    public void lendBook() 
-    {
-        // Code to lend a book to a list of users
-    }
-
-    /*public void addMember(User member) 
-    {
-        Library.books().remove(member.getAccountID());
-        member = member.applyForMembership();
-        Library.users().put(member.getAccountID(),member);
-        Library.serialize("JSON_Database/userDatabase.json", Library.users());
-        
-    }*/
-    public void addMember(User member) 
-    {
-        if (member.isMember() == true) {
-            return; // User is already a member, do nothing
-        }
-            member.applyForMembership();
-            Library.users().put(member.getAccountID(),member);
-            Library.serialize("JSON_Database/userDatabase.json", Library.users());
-    }
-    
-    
-    /*public void deleteBook(Book book)
-    {
-       int id = book.getBookID();
-       deleteBook(id);
-       
-    }*/
-    
-   /* public void deleteBook(int id)
-    {
-        Library.books().remove(id);
-        Library.serialize("JSON_Database/bookDatabase.json", Library.books());
-    }*/
-    
      
-    public void deleteBook(int bookId) 
+     
+     public void deleteBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
             Book book = Library.books().get(bookId);
@@ -97,8 +42,54 @@ public class Staff extends Account {
         }
     }
     
-    // Getter methods
+     public void modifyBook(int bookId, String newTitle, String newAuthor) 
+     {
+        if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
+            book.setTitle(newTitle);
+            book.setAuthor(newAuthor);
+                
+            // Update the book in the hashtable
+            Library.books().remove(bookId);
+            Library.books().put(bookId, book);
+            System.out.println("Book ID=" + bookId + " has been updated with the new information.");
+            } else {
+                System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+            }
+     }
+
+     public void markBookReserved(Book book) 
+     {
+        if (book.isReserved() == true) {
+            return; // Book is already reserved, do nothing
+        }
+            book.setReserved(true);
+            Library.books().put(book.getBookID(),book);
+            Library.serialize("JSON_Database/userDatabase.json", Library.books());
+     }
+
+    public void lendBook(int userId, int bookId) 
+    {
+        //LEND A BOOK TO A LIST OF USER
     
+        if (Library.users().containsKey(userId)) {
+        
+        }
+    }
+    
+    public void addMember(User member) 
+    {
+        if (member.isMember() == true) {
+            return; // User is already a member, do nothing
+        }
+            member.applyForMembership();
+            Library.users().put(member.getAccountID(),member);
+            Library.serialize("JSON_Database/userDatabase.json", Library.users());
+    }
+
+    
+    // Getter methods
+  
     public String getFirstName() 
     {
         return firstName;

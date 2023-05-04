@@ -1,1 +1,1 @@
-{"2":{"title":"titleB","author":"authorB","bookID":2,"price":9,"isAvailable":true}}
+{"3":{"title":"Nine Cats","author":"Feverland","bookID":3,"price":10,"isReserved":true,"isAvailable":true,"reserved":true,"available":true},"2":{"title":"Twilight","author":"Stephanie Meyer","bookID":2,"price":9,"isReserved":false,"isAvailable":true,"reserved":false,"available":true}}

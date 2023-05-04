@@ -18,7 +18,8 @@ public class Book {
     private int bookID;
     private int price;
     private static int count = 0;
-    protected boolean isAvailable = true;
+    protected boolean isReserved = false; // by default, only a staff employee can mark up a book as reserved
+    protected boolean isAvailable = true; // by default, book is available until a staff employee lend the book to a registered user
         
     public Book(int id, String title, String author, int price)
     {
@@ -56,6 +57,15 @@ public class Book {
     {
         return price;
     }
+    
+    public boolean isReserved()
+    {
+        return isReserved;
+    }
+    
+    public boolean isAvailable() {
+        return isAvailable;
+    }
 
     // Setter methods
     
@@ -79,17 +89,19 @@ public class Book {
         this.price = price;
     }
     
-    public boolean isIsAvailable() {
-        return isAvailable;
+    public void setReserved(boolean reserved) 
+    {
+        this.isReserved = reserved;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
+    public void setAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-    
+   
     @Override
     public String toString()
     {
-       return String.format("Book_ID=%d, Book_Title=%s, Author=%s, Price=%d", bookID, title, author, price); 
+       return String.format("Book_ID=%d, Book_Title=%s, Author=%s, Price=%d, is_Book_Reserved=%b, is_Book_Available=%b\n", 
+               bookID, title, author, price, isReserved(), isAvailable()); 
     }
 }
