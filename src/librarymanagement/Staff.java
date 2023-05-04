@@ -12,9 +12,17 @@ import java.util.Hashtable;
  */
 public class Staff extends Account {
     
-     public Staff(String accountID, String password) 
+     private String firstName;
+     private String lastName;
+     
+     public Staff(int accountID, String password, String fname, String lname) 
      {
         super(accountID, password);
+        this.firstName=fname;
+        this.lastName=lname;
+        //Library.staff().put(super.getAccountID(),);
+        Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());
+        
      }
     
      public void addBook(Book book) 
@@ -44,11 +52,25 @@ public class Staff extends Account {
         // Code to lend a book to a list of users
     }
 
+    /*public void addMember(User member) 
+    {
+        Library.books().remove(member.getAccountID());
+        member = member.applyForMembership();
+        Library.users().put(member.getAccountID(),member);
+        Library.serialize("JSON_Database/userDatabase.json", Library.users());
+        
+    }*/
     public void addMember(User member) 
     {
-        // Code to add a member 
+        if (member.isMember() == true) {
+            return; // User is already a member, do nothing
+        }
+            member.applyForMembership();
+            Library.users().put(member.getAccountID(),member);
+            Library.serialize("JSON_Database/userDatabase.json", Library.users());
     }
-
+    
+    
     /*public void deleteBook(Book book)
     {
        int id = book.getBookID();
@@ -63,7 +85,8 @@ public class Staff extends Account {
     }*/
     
      
-    public void deleteBook(int bookId) {
+    public void deleteBook(int bookId) 
+    {
         if (Library.books().containsKey(bookId)) {
             Book book = Library.books().get(bookId);
             Library.books().remove(bookId);
@@ -72,6 +95,36 @@ public class Staff extends Account {
         } else {
             System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
+    }
+    
+    // Getter methods
+    
+    public String getFirstName() 
+    {
+        return firstName;
+    }
+
+    public String getLastName() 
+    {
+        return lastName;
+    }
+    
+    // Setter methods
+    
+    public void setFirstName(String firstName) 
+    {
+        this.firstName = firstName;
+    }
+    
+    public void setLastName(String lastName) 
+    {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString()
+    {
+       return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s", super.getAccountID(), lastName, firstName); 
     }
 
 }

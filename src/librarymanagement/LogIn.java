@@ -11,27 +11,25 @@ package librarymanagement;
 public abstract class LogIn {
     abstract void AccountLoggedIn();
 }
-class LogInFactory{
-    static public Account createAccountType(String AccountId){
-        if(AccountId.startsWith("1")){
-            //System.out.println("New Staff");
-            Account s = new Staff(AccountId, "Abc123");
-            Library.staffs().put(Integer.parseInt(AccountId), s);
-            return s;
+
+class LogInFactory{ 
+    
+        static public Account createAccountType(int accountId) 
+        {
+        String accountIdStr = String.valueOf(accountId);
+            if (accountIdStr.charAt(0) == '1') {
+                 Account s = new Staff(accountId, "Abc123", "hibba", "qaraman");
+                 Library.staffs().put(accountId, s);
+                 return s; 
+            } else if (accountIdStr.startsWith("2")) {
+                Account sup = new Supplier(accountId, "Def123","Books Inc.");
+                Library.suppliers().put(accountId, sup);
+                return sup;
+            } else if (accountIdStr.startsWith("3")) {
+                Account user = new User(accountId, "Ghi123", "sadaf", "zakria");
+                Library.users().put(accountId, user);
+                return user;
+            }
+            return null;
         }
-        else if(AccountId.startsWith("2")){
-            //System.out.println("New Supplier");
-            Account sup = new Supplier(AccountId, "Def123");
-            Library.suppliers().put(Integer.parseInt(AccountId), sup);
-            return sup;
-        }
-        else if(AccountId.startsWith("3")){
-            //System.out.println("New User");
-            Account user = new User(AccountId, "Ghi123");
-            Library.users().put(Integer.parseInt(AccountId), user);
-            return user;
-        }
-        return null;
-        
-    } 
 } 

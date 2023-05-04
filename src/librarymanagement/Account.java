@@ -12,17 +12,19 @@ package librarymanagement;
  */
 public class Account {
     
-    private String accountID;
+    private int accountID;
     private String password;
    
 
-    public Account(String accountID, String password)
+    public Account(int accountID, String password)
     {
         this.accountID = accountID;
         this.password = password;
     }
 
-    public static void searchBook(int bookId) {
+    // this method is static because anyone can browse the library database
+    public static void searchBook(int bookId) 
+    {
         if (Library.books().containsKey(bookId)) {
            Book book = Library.books().get(bookId);
            System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
@@ -32,25 +34,32 @@ public class Account {
     }
 
     // Getter methods
-    public String getAccountID() {
+    //NOTE: Hashtable <Integer, Account>
+    public int getAccountID()  
+    {
         return accountID;
     }
     
-      public String getPassword() {
+    public String getPassword() 
+    {
         return password;
     }
  
     // Setter methods
-    public void setAccountID(String accountID) {
+    
+    public void setAccountID(int accountID) 
+    {
         this.accountID = accountID;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) 
+    {
         this.password = password;
     }
     
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "\t"+accountID+"\t\t"+password+"\n";
     }
 

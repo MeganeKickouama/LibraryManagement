@@ -17,6 +17,11 @@ public class Book {
     private int bookID;
     private int price;
     private static int count = 0;
+    
+    //need fields to  borrow a book & return a book
+    //like
+    //private boolean isBookAvailable or isBookReserved
+            
 
     public Book( int id, String title, String author, int price)
     {
@@ -34,42 +39,52 @@ public class Book {
     }
     
      // Getter methods
-    public String getTitle() {
+    
+    public String getTitle() 
+    {
         return title;
     }
 
-    public String getAuthor() {
+    public String getAuthor() 
+    {
         return author;
     }
 
-    public int getBookID() {
+    public int getBookID() 
+    {
         return bookID;
     }
 
-    public int getPrice() {
+    public int getPrice() 
+    {
         return price;
     }
 
     // Setter methods
-    public void setTitle(String title) {
+    
+    public void setTitle(String title) 
+    {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author) 
+    {
         this.author = author;
     }
 
-    public void setBookID(int bookID) {
+    public void setBookID(int bookID) 
+    {
         this.bookID = bookID;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(int price) 
+    {
         this.price = price;
     }
     
     @Override
     public String toString()
     {
-       return String.format("ID=%d, Title=%s, Author=%s, Price=%d", bookID, title, author, price); 
+       return String.format("Book_ID=%d, Book_Title=%s, Author=%s, Price=%d", bookID, title, author, price); 
     }
 }

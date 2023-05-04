@@ -10,9 +10,13 @@ package librarymanagement;
  * @author szakr
  */
 public class Supplier extends Account{
-
-    public Supplier(String accountID, String password) {
-        super(accountID, password);
-    }
     
+    private String supplierName;
+
+    public Supplier(int accountID, String password, String name) 
+    {
+        super(accountID, password);
+        this.supplierName=name;
+    }
+  
 }

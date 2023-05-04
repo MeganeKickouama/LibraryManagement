@@ -4,8 +4,8 @@ package librarymanagement;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-import java.util.Hashtable;
 import java.io.*;
+import java.util.Hashtable;
 import java.nio.file.Paths;
 import org.json.simple.JSONObject;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -13,10 +13,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 /**
  * @author szakr
  * @author kmega
+ * @author hqara
  */
 public class Library {
 
@@ -91,10 +91,54 @@ public class Library {
         }
     }
     
-    // for when an element is either deleted or added
-    public static void remove(int id)
+    //Singleton Library class is like an Admin that can add/remove elements from the System!
+    
+    public static void addUser(User user)
     {
-        
+         Library.users().put(user.getAccountID(), user);
+         Library.serialize("JSON_Database/userDatabase.json", Library.users());
+    }
+    
+    public static void addStaff(Staff staff)
+    {
+         Library.staffs().put(staff.getAccountID(), staff);
+         Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());
+    }
+    
+    public static void addSupplier(Supplier supplier)
+    {
+         Library.suppliers().put(supplier.getAccountID(), supplier);
+         Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());
+    }
+    
+    public static void removeUser(int userId)
+    {
+        if (Library.users().containsKey(userId)) {
+            Library.users().remove(userId);
+            Library.serialize("JSON_Database/userDatabase.json", Library.users());  
+        } else {
+            System.out.println("User ID=" + userId + " does not exist in the Library database.");
+        }
+    }
+    
+    public static void removeStaff(int staffId)
+    {
+         if (Library.staffs().containsKey(staffId)) {
+            Library.users().remove(staffId);
+            Library.serialize("JSON_Database/staffDatabase.json", Library.users());  
+        } else {
+            System.out.println("User ID=" + staffId + " does not exist in the Library database.");
+        }
+    }
+    
+    public static void removeSupplier(int supplierId)
+    {
+          if (Library.suppliers().containsKey(supplierId)) {
+            Library.users().remove(supplierId);
+            Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());  
+        } else {
+            System.out.println("User ID=" + supplierId + " does not exist in the Library database.");
+        }
     }
     
     /* DATABASE GETTERS */
