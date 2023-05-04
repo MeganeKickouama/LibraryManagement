@@ -44,7 +44,7 @@ public class User extends Account{
         if (!Library.books().containsKey(bookID)) {
             System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
         }
-        else if (!Library.books().get(bookID).isAvailable) {
+        else if (!Library.books().get(bookID).isAvailable() == true) {
             System.out.println("Sorry " + borrowerName + ", the book " + getBookTitleByID(bookID) + " is already borrowed by someone else.");
         }
         else{
