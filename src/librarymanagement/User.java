@@ -76,7 +76,6 @@ public class User extends Account implements LogIn{
     public void searchBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
-           Book book = Library.books().get(bookId);
            System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
         }
         System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
