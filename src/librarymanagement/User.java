@@ -72,7 +72,7 @@ public class User extends Account{
     {
         if (Library.books().containsKey(bookId)) {
            Book book = Library.books().get(bookId);
-           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+           System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
         }
         System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
