@@ -48,7 +48,18 @@ public class Supplier extends Account{
         }
         return null;
     }
-
+    
+    @Override
+    public void searchBook(int bookId) 
+    {
+        if (Library.books().containsKey(bookId)) {
+           Book book = Library.books().get(bookId);
+           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+        }
+        System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+    }
+    
+    // Getter methods
     public String getSupplierName() 
     {
         return supplierName;

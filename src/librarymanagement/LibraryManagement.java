@@ -6,7 +6,7 @@ package librarymanagement;
  
 
 import java.io.*;
-import static librarymanagement.Account.searchBook;
+//import static librarymanagement.Account.searchBook;
 import static librarymanagement.Book.nextID;
 
 /**
@@ -72,8 +72,8 @@ public class LibraryManagement {
                 + Library.books().toString());
         
         System.out.println("\nSearching for a book:");
-        searchBook(1);
-        searchBook(2);
+        staff.searchBook(1);
+        staff.searchBook(2);
         
         System.out.println("\nAdding a non member user to userDatabase.json:");
         User usertest = new User(321123,"password","sarah","colantani");

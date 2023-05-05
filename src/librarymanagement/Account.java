@@ -10,28 +10,19 @@ package librarymanagement;
  * @author szakr
  * @author hqara
  */
-public class Account {
+public abstract class Account {
     
     private int accountID;
     private String password;
    
-
     public Account(int accountID, String password)
     {
         this.accountID = accountID;
         this.password = password;
     }
 
-    // this method is static because anyone can browse the library database
-    public static void searchBook(int bookId) 
-    {
-        if (Library.books().containsKey(bookId)) {
-           Book book = Library.books().get(bookId);
-           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
-            return;
-        }
-        System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
-    }
+    // this method is abstract because anyone can browse the library database
+    public abstract void searchBook(int bookId);
 
     // Getter methods
     
