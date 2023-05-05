@@ -45,15 +45,6 @@ public class Supplier extends Account implements LogIn{
         }
     }
     
-    public String getBookTitleByID(int bookID) 
-    {
-        if (Library.books().containsKey(bookID)) {
-            Book book = Library.books().get(bookID);
-            return book.getTitle();
-        }
-        return null;
-    }
-    
     @Override
     public void searchBook(int bookId) 
     {
@@ -64,14 +55,18 @@ public class Supplier extends Account implements LogIn{
     }
     
     // Getter methods
+    public String getBookTitleByID(int bookID) 
+    {
+        if (Library.books().containsKey(bookID)) {
+            Book book = Library.books().get(bookID);
+            return book.getTitle();
+        }
+        return null;
+    }
+    
     public String getSupplierName() 
     {
         return supplierName;
-    }
-
-    public void setSupplierName(String supplierName) 
-    {
-        this.supplierName = supplierName;
     }
 
     public int getBalance() 
@@ -79,6 +74,12 @@ public class Supplier extends Account implements LogIn{
         return balance;
     }
 
+    //Setter
+    public void setSupplierName(String supplierName) 
+    {
+        this.supplierName = supplierName;
+    }
+    
     public void setBalance(int balance) 
     {
         this.balance = balance;
@@ -90,6 +91,7 @@ public class Supplier extends Account implements LogIn{
        return String.format("Supplier_ID=%d, Name=%s, Balance=%d", super.getAccountID(), supplierName, balance); 
     }    
 
+    @Override
     public int AccountLoggedIn() 
     {
         return 2;

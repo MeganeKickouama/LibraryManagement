@@ -123,6 +123,7 @@ public class Staff extends Account implements LogIn {
        return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s", super.getAccountID(), lastName, firstName); 
     }
 
+    @Override
     public int AccountLoggedIn() 
     {
         return 1;

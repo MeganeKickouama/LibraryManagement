@@ -28,19 +28,12 @@ public class User extends Account implements LogIn{
         this.firstName=fname;
         this.lastName=lname;
     }
-
-    public User(int accountID, String password, String fname, String lname, boolean isMember) 
-    {
-        super(accountID, password);
-        this.firstName=fname;
-        this.lastName=lname;
-        this.isMember=isMember;
-    }
     
     //Send request to get membership, then a staff employee will add user as a member
     public void applyForMembership()
     {
         this.isMember = true;
+        System.out.println("Congratulations, you are now a member!");
     }
     
     public void borrowBook(int bookID, String borrowerName)
@@ -82,6 +75,23 @@ public class User extends Account implements LogIn{
     }
     
     // Getter methods
+    public boolean isBookAvailable(int bookID) 
+     {
+        if (Library.books().containsKey(bookID)) {
+            Book book = Library.books().get(bookID);
+            return book.isAvailable();
+        }
+        return false;
+     }
+    
+    public String getBookTitleByID(int bookID) 
+    {
+        if (Library.books().containsKey(bookID)) {
+            Book book = Library.books().get(bookID);
+            return book.getTitle();
+        }
+        return null;
+    }
     
     public String getFirstName() 
     {
@@ -98,26 +108,7 @@ public class User extends Account implements LogIn{
         return isMember;
     }
     
-     public boolean isBookAvailable(int bookID) 
-     {
-        if (Library.books().containsKey(bookID)) {
-            Book book = Library.books().get(bookID);
-            return book.isAvailable;
-        }
-        return false;
-     }
-    
-    public String getBookTitleByID(int bookID) 
-    {
-        if (Library.books().containsKey(bookID)) {
-            Book book = Library.books().get(bookID);
-            return book.getTitle();
-        }
-        return null;
-    }
-
     // Setter methods
-    
     public void setFirstName(String firstName) 
     {
         this.firstName = firstName;
@@ -136,6 +127,7 @@ public class User extends Account implements LogIn{
                super.getAccountID(), lastName, firstName, isMember);
     }
 
+    @Override
     public int AccountLoggedIn() 
     {
         return 3;
