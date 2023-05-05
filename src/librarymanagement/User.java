@@ -119,7 +119,7 @@ public class User extends Account implements LogIn{
     @Override
     public String toString()
     {
-       return String.format("User_ID=%d, Last_Name=%s, First_Name=%s, Is_Member=%b", 
+       return String.format("User_ID=%d, Last_Name=%s, First_Name=%s, Is_Member=%b\n", 
                super.getAccountID(), lastName, firstName, isMember);
     }
 

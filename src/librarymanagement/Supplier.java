@@ -85,7 +85,7 @@ public class Supplier extends Account implements LogIn{
     @Override
     public String toString()
     {
-       return String.format("Supplier_ID=%d, Name=%s, Balance=%d", super.getAccountID(), supplierName, balance); 
+       return String.format("Supplier_ID=%d, Name=%s, Balance=%d\n", super.getAccountID(), supplierName, balance); 
     }    
 
     @Override

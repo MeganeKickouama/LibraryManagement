@@ -2,7 +2,7 @@ package librarymanagement;
 
 import java.io.*;
 import java.util.Scanner;
-//import static librarymanagement.Account.searchBook;
+//import static librarymanagement.Library;
 import static librarymanagement.Book.nextID;
 
 /**
@@ -18,14 +18,79 @@ public class LibraryManagement {
      * @param args the command line arguments
      */
     
+
+    
     public static void main(String[] args) {
+        
+            
+        // Hardcode Existing Users, Staffs and Suppliers
+        
+        //Staffs
+        Staff staff1 = new Staff(1111, "staff", "Cornelia", "Christie");
+        Staff staff2 = new Staff(1112, "staff", "Tyler", "Davis");
+        Staff staff3 = new Staff(1113, "staff", "Syed", "Aszaf");
+        Staff staff4 = new Staff(1114, "staff", "Pejman", "Azadi");
+        Staff staff5 = new Staff(1115, "staff", "Mehdi", "Azazi");
+
+        Staff staffs[] = {staff1, staff2, staff3, staff4, staff5};
+        for (Staff staffDatabase : staffs) 
+        {
+            Library.addStaff(staffDatabase);
+        };
+        
+        System.out.println("Existing staff employees in database:\n"+Library.staffs().toString());
+
+        // Suppliers
+        Supplier supplier1 = new Supplier(2111, "supplier", "Hani");
+        Supplier supplier2 = new Supplier(2112, "supplier", "Jakes");
+        Supplier supplier3 = new Supplier(2113, "supplier", "Vanier");
+        Supplier supplier4 = new Supplier(2114, "supplier", "Dawson");
+        Supplier supplier5 = new Supplier(2115, "supplier", "JAC");
+        
+        Supplier suppliers[] = {supplier1, supplier2, supplier3, supplier4, supplier5};
+        for (Supplier supplierDatabase : suppliers) 
+        {
+            Library.addSupplier(supplierDatabase);
+        };
+
+        System.out.println("Existing suppliers in database:\n"+Library.suppliers().toString());
+
+        // Users
+        User user1 = new User(3111, "user", "Hibba", "Qaraman");
+        User user2 = new User(3112, "user", "Sarah", "Colantoni");
+        User user3 = new User(3113, "user", "Sadaf", "Zakria");
+        User user4 = new User(3114, "user", "Mégane", "Kickouama");
+        User user5 = new User(3115, "user", "Yu", "Jiang");
+
+        User users[] = {user1, user2, user3, user4, user5};
+        for (User userDatabase : users) 
+        {
+            Library.addUser(userDatabase);
+        };
+        System.out.println("Existing users in database:\n"+Library.users().toString());
+
+        // Hardcode Books for Library
+        Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12, 4);
+        Book book2 = new Book(nextID(), "1984", "George Orwell", 20, 7);
+        Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13, 6);
+        Book book4 = new Book(nextID(), "Dune", "Frank Herbert", 7, 2);
+        Book book5 = new Book(nextID(), "Outliers", "Malcolm Gladwell", 15, 1);
+
+        Book books[] = {book1, book2, book3, book4};
+        for (Book bookDatabase : books) 
+        {
+            Library.addBook(bookDatabase);
+        };
+        System.out.println("Existing books in database:\n"+Library.books().toString());
+        
+        
         Scanner input = new Scanner(System.in);
   
         int id= 2234; //change first digit to either 1,2,3 to test all menu
         String password= "temp";
         
         // Ask the user to enter their login credentials
-        System.out.println("Please enter your account ID and password to login:");
+        System.out.println("\nPlease enter your account ID and password to login:");
         System.out.print("Account ID: ");
         int enteredID = input.nextInt();
         System.out.print("Password: ");
@@ -45,8 +110,9 @@ public class LibraryManagement {
         if (mainChoice == 1){
             do {
                 Staff staff = new Staff(id, password);
-                System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book\n3. Mark a book as reserved or not reserved"+
-                "\n4. Modify Book information\n5. Lend book to list of users\n6. Add a member\n7. Exit");
+                System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book"+
+                        "\n3. Mark a book as reserved or not reserved\n4. Modify Book information+"+
+                        "\n5. Lend book to list of users\n6. Add a member\n7. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
 
@@ -114,7 +180,8 @@ public class LibraryManagement {
         else if (mainChoice == 3){
             do {
                 User user = new User(id, password);
-                System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book\n4. Return a book\n5. Exit");
+                System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book"+
+                        "\n4. Return a book\n5. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
 
@@ -143,7 +210,7 @@ public class LibraryManagement {
             } while (subChoice != 5);
         }
 
-              
+             
         /*
         LogInFactory loginFact = new LogInFactory();
         Account acc;
@@ -174,7 +241,7 @@ public class LibraryManagement {
          staff.modifyBook(2, "Twilight", "Stephanie Meyer");
          System.out.println("Inside bookDatabase.json after modifying a book:\n"
                 +Library.books().toString());
-        
+        Book sample = new Book(nextID(),"Twilight", "Stephanie Meyer",10, 7);
         Book sample = new Book(nextID(),"Nine Cats","Feverland",10, 7);
         staff.markBookReserved(sample);
          System.out.println("\nInside bookDatabase.json after an staff employee marked a book as reserved:\n"

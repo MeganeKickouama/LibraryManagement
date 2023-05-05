@@ -119,7 +119,7 @@ public class Staff extends Account implements LogIn {
     @Override
     public String toString()
     {
-       return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s", super.getAccountID(), lastName, firstName); 
+       return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s\n", super.getAccountID(), lastName, firstName); 
     }
 
     @Override
