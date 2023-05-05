@@ -84,8 +84,15 @@ public class LibraryManagement {
         
         Scanner input = new Scanner(System.in);
   
+        
+        
+        
+        
+        
         // Ask the user to enter their login credentials
         System.out.println("\nPlease enter your account ID and password to login:");
+              
+        
         System.out.print("Account ID: ");
         int enteredID = input.nextInt();
         System.out.print("Password: ");
@@ -121,23 +128,87 @@ public class LibraryManagement {
                 switch (subChoice) {
 
                     case 1:
-                        //Sys
-                        //staff.addBook(book);
+                        //add book + save in file
+                        System.out.println("Book name: ");
+                        String name = input.next();
+                        System.out.println("Author: ");
+                        String author = input.next();
+                        System.out.println("Price: ");
+                        double price = input.nextDouble();
+                        System.out.println("Quantity: ");
+                        int quantity = input.nextInt();
+                        
+                        //new Book(nextID(), name, author, price, quantity);
+                        staff.addBook(new Book(nextID(), name, author, price, quantity));
                         break;
                     case 2:
-                        // Code for Sub-menu 2
+                        // search for book
+                        System.out.println("Book ID: ");
+                        staff.searchBook(input.nextInt());
+                        
                         break;
                     case 3:
-                        // Code for Sub-menu 3
+                        // reserve/not reserve book
+                        System.out.println("Book ID: ");
+                        //staff.searchBook(input.nextInt());
+                        int bookid = input.nextInt();
+                        if (Library.books().containsKey(bookid)){
+                            System.out.println("1. Reserve book \n 2. Unreserve book");
+                            switch (input.nextInt()) {
+                                case 1:
+                                    
+                                        Book bookReserve = Library.books().get(bookid);
+                                        staff.markBookReserved(bookReserve);
+                                    
+                                   
+                                    break;
+                                    
+                                case 2:
+                                    
+                                        Book bookUnreserve = Library.books().get(bookid);
+                                        staff.markBookUnreserved(bookUnreserve);
+                                    
+                                   
+                                    break;
+                                default:
+                                    throw new AssertionError();
+                            }
+                        }
+                        else{
+                            System.out.println("This Book ID does not exist in our library.");
+                        }
                         break;
                     case 4:
-                        // Code for Sub-menu 3
+                        // modify book info
+                        System.out.println("Enter Book ID: ");
+                        int bookId = input.nextInt();
+                        if (Library.books().containsKey(bookId)){
+                            //Before mods
+                            System.out.println(Library.books().get(bookId).toString());
+                            
+                            System.out.println("Enter new Title: ");
+                            String newTitle = input.next();
+                            System.out.println("Enter new Author");
+                            String newAuthor = input.next();
+                            
+                            staff.modifyBook(bookId, newTitle, newAuthor);
+                        }
+                        else{
+                            System.out.println("Book can not be modified, does not exist.");
+                        }
                         break;
                     case 5:
-                        // Code for Sub-menu 3
+                        //Lend book to list of users
+                        
                         break;
                     case 6:
-                        // Code for Sub-menu 3
+                        //Add a member
+                        System.out.println("Enter User ID: ");
+                        int userID = input.nextInt();
+                        
+                        //User userMember = 
+                        
+                        //staff.addMember(userMember);
                         break;
                     case 7:
                         System.out.println("Exiting program...");
