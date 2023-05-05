@@ -10,7 +10,7 @@ package librarymanagement;
 public class Supplier extends Account implements LogIn{
     
     private String supplierName;
-    private int balance;
+    private double balance;
 
     public Supplier(int accountID, String password) 
     {
@@ -66,7 +66,7 @@ public class Supplier extends Account implements LogIn{
         return supplierName;
     }
 
-    public int getBalance() 
+    public double getBalance() 
     {
         return balance;
     }
@@ -77,7 +77,7 @@ public class Supplier extends Account implements LogIn{
         this.supplierName = supplierName;
     }
     
-    public void setBalance(int balance) 
+    public void setBalance(double balance) 
     {
         this.balance = balance;
     }
@@ -85,7 +85,7 @@ public class Supplier extends Account implements LogIn{
     @Override
     public String toString()
     {
-       return String.format("Supplier_ID=%d, Name=%s, Balance=%d\n", super.getAccountID(), supplierName, balance); 
+       return String.format("Supplier_ID=%d, Name=%s, Balance=$%4.2f\n", super.getAccountID(), supplierName, balance); 
     }    
 
     @Override

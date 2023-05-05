@@ -18,19 +18,17 @@ public class LibraryManagement {
      * @param args the command line arguments
      */
     
-
-    
     public static void main(String[] args) {
         
             
         // Hardcode Existing Users, Staffs and Suppliers
         
         //Staffs
-        Staff staff1 = new Staff(1111, "staff", "Cornelia", "Christie");
-        Staff staff2 = new Staff(1112, "staff", "Tyler", "Davis");
-        Staff staff3 = new Staff(1113, "staff", "Syed", "Aszaf");
+        Staff staff1 = new Staff(1111, "staff", "Cornelia", "Chirita");
+        Staff staff2 = new Staff(1112, "staff", "Nagat", "Drawel");
+        Staff staff3 = new Staff(1113, "staff", "Syed", "Afzal");
         Staff staff4 = new Staff(1114, "staff", "Pejman", "Azadi");
-        Staff staff5 = new Staff(1115, "staff", "Mehdi", "Azazi");
+        Staff staff5 = new Staff(1115, "staff", "Mehdi", "Farzad");
 
         Staff staffs[] = {staff1, staff2, staff3, staff4, staff5};
         for (Staff staffDatabase : staffs) 
@@ -41,11 +39,11 @@ public class LibraryManagement {
         System.out.println("Existing staff employees in database:\n"+Library.staffs().toString());
 
         // Suppliers
-        Supplier supplier1 = new Supplier(2111, "supplier", "Hani");
-        Supplier supplier2 = new Supplier(2112, "supplier", "Jakes");
-        Supplier supplier3 = new Supplier(2113, "supplier", "Vanier");
-        Supplier supplier4 = new Supplier(2114, "supplier", "Dawson");
-        Supplier supplier5 = new Supplier(2115, "supplier", "JAC");
+        Supplier supplier1 = new Supplier(2221, "supplier", "Hani AbuSharkh");
+        Supplier supplier2 = new Supplier(2222, "supplier", "Jakes");
+        Supplier supplier3 = new Supplier(2223, "supplier", "Vanier");
+        Supplier supplier4 = new Supplier(2224, "supplier", "Dawson");
+        Supplier supplier5 = new Supplier(2225, "supplier", "JAC");
         
         Supplier suppliers[] = {supplier1, supplier2, supplier3, supplier4, supplier5};
         for (Supplier supplierDatabase : suppliers) 
@@ -56,11 +54,11 @@ public class LibraryManagement {
         System.out.println("Existing suppliers in database:\n"+Library.suppliers().toString());
 
         // Users
-        User user1 = new User(3111, "user", "Hibba", "Qaraman");
-        User user2 = new User(3112, "user", "Sarah", "Colantoni");
-        User user3 = new User(3113, "user", "Sadaf", "Zakria");
-        User user4 = new User(3114, "user", "Mégane", "Kickouama");
-        User user5 = new User(3115, "user", "Yu", "Jiang");
+        User user1 = new User(3331, "user", "Hibba", "Qaraman");
+        User user2 = new User(3332, "user", "Sarah", "Colantoni");
+        User user3 = new User(3333, "user", "Sadaf", "Zakria");
+        User user4 = new User(3334, "user", "Mégane", "Kickouama");
+        User user5 = new User(3335, "user", "Yu", "Jiang");
 
         User users[] = {user1, user2, user3, user4, user5};
         for (User userDatabase : users) 
@@ -70,13 +68,13 @@ public class LibraryManagement {
         System.out.println("Existing users in database:\n"+Library.users().toString());
 
         // Hardcode Books for Library
-        Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12, 4);
-        Book book2 = new Book(nextID(), "1984", "George Orwell", 20, 7);
-        Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13, 6);
-        Book book4 = new Book(nextID(), "Dune", "Frank Herbert", 7, 2);
-        Book book5 = new Book(nextID(), "Outliers", "Malcolm Gladwell", 15, 1);
+        Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
+        Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
+        Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13.25, 6);
+        Book book4 = new Book(nextID(), "Dune", "Frank Herbert", 7.95, 2);
+        Book book5 = new Book(nextID(), "Outliers", "Malcolm Gladwell", 15.25, 1);
 
-        Book books[] = {book1, book2, book3, book4};
+        Book books[] = {book1, book2, book3, book4, book5};
         for (Book bookDatabase : books) 
         {
             Library.addBook(bookDatabase);
@@ -86,9 +84,6 @@ public class LibraryManagement {
         
         Scanner input = new Scanner(System.in);
   
-        int id= 2234; //change first digit to either 1,2,3 to test all menu
-        String password= "temp";
-        
         // Ask the user to enter their login credentials
         System.out.println("\nPlease enter your account ID and password to login:");
         System.out.print("Account ID: ");
@@ -97,19 +92,26 @@ public class LibraryManagement {
         String enteredPassword = input.next();
 
         // Check if the entered credentials are valid
-        if (!(enteredID == id) || !enteredPassword.equals(password)) {
+        if (!(Library.staffs().containsKey(enteredID) && Library.staffs().get(enteredID).getPassword().equals(enteredPassword))
+                && !(Library.suppliers().containsKey(enteredID) && Library.suppliers().get(enteredID).getPassword().equals(enteredPassword))
+                && !(Library.users().containsKey(enteredID) && Library.users().get(enteredID).getPassword().equals(enteredPassword))) {
             System.out.println("Invalid username or password. Exiting program...");
             return;
         }
-        
+
         LogInFactory loginFact = new LogInFactory();
-        LogIn login = loginFact.createAccountType(id, password);
+        Account account = loginFact.createAccountType(enteredID, enteredPassword);
+        if (account == null) {
+            System.out.println("Invalid account type");
+            return;
+        }
+        LogIn login = (LogIn) account;
         int mainChoice = login.AccountLoggedIn();
         int subChoice = 0;
-
+        
         if (mainChoice == 1){
             do {
-                Staff staff = new Staff(id, password);
+                Staff staff = new Staff(enteredID, enteredPassword);
                 System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book"+
                         "\n3. Mark a book as reserved or not reserved\n4. Modify Book information+"+
                         "\n5. Lend book to list of users\n6. Add a member\n7. Exit");
@@ -150,7 +152,7 @@ public class LibraryManagement {
         
         else if (mainChoice == 2){
             do {
-                Supplier supplier = new Supplier(id, password);
+                Supplier supplier = new Supplier(enteredID, enteredPassword);
                 System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
@@ -179,7 +181,7 @@ public class LibraryManagement {
         
         else if (mainChoice == 3){
             do {
-                User user = new User(id, password);
+                User user = new User(enteredID, enteredPassword);
                 System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book"+
                         "\n4. Return a book\n5. Exit");
                 System.out.print("Enter your choice: ");

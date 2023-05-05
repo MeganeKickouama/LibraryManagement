@@ -34,7 +34,7 @@ public class Library {
     {
         if (instance == null)
         {
-            return new Library();
+            instance = new Library();
         }
 
         return instance;
@@ -72,7 +72,7 @@ public class Library {
             }
             else if (file.contains("staff") || file.contains("user") || file.contains("supplier"))
             {
-                Hashtable<String, Account> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                Hashtable<Integer, Account> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
                 database.putAll(temp);
             }
             else 

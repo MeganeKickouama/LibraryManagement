@@ -11,13 +11,13 @@ public class Book {
     private String title;
     private String author;
     private int bookID;
-    private int price;
+    private double price;
     private int quantity;
     private static int count = 0;
     protected boolean isReserved = false; // by default, only a staff employee can mark up a book as reserved
     protected boolean isAvailable = true; // by default, book is available until a staff employee lend the book to a registered user
         
-    public Book(int id, String title, String author, int price, int quantity)
+    public Book(int id, String title, String author, double price, int quantity)
     {
         this.bookID = id;
         this.title = title;
@@ -49,7 +49,7 @@ public class Book {
         return bookID;
     }
 
-    public int getPrice() 
+    public double getPrice() 
     {
         return price;
     }
@@ -85,7 +85,7 @@ public class Book {
         this.bookID = bookID;
     }
 
-    public void setPrice(int price) 
+    public void setPrice(double price) 
     {
         this.price = price;
     }
@@ -107,7 +107,7 @@ public class Book {
     @Override
     public String toString()
     {
-       return String.format("Book_ID=%d, Book_Title=%s, Author=%s, Price=%d, Quantity=%d, is_Book_Reserved=%b, is_Book_Available=%b\n", 
+       return String.format("Book_ID=%d, Book_Title=%s, Author=%s, Price=$%4.2f, Quantity=%d, is_Book_Reserved=%b, is_Book_Available=%b\n", 
                bookID, title, author, price, quantity, isReserved(), isAvailable()); 
     }
 }
