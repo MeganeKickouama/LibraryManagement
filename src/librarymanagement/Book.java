@@ -33,7 +33,6 @@ public class Book {
 
     public static int nextID()
     {
-        // to modify later, I am using this for a test
         count++;
         return count;
     }

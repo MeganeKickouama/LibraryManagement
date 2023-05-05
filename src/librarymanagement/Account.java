@@ -34,7 +34,7 @@ public class Account {
     }
 
     // Getter methods
-    //NOTE: Hashtable <Integer, Account>
+    
     public int getAccountID()  
     {
         return accountID;

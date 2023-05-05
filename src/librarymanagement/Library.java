@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author szakr
  * @author kmega
  * @author hqara
+ * @author scol
  */
 public class Library {
 
@@ -42,7 +43,7 @@ public class Library {
         return instance;
     }
 
-    // to convert obj to JSONobj
+    // Convert obj to JSONobj
     public static void serialize(String file, Hashtable database)
     {
         try 
@@ -57,11 +58,9 @@ public class Library {
         }
     }
     
-    // to convert the json file to a hashtable
+    // Convert the json file to a hashtable
     public static void deserialize(String file, Hashtable database)
     {
-        // TODO WRITE TO FILE 
-        // TODO DO THE SAME FOR THE 3 OTHER HASHTABLES
         try 
         {
             database.clear();
@@ -95,30 +94,30 @@ public class Library {
     
     public static void addUser(User user)
     {
-         Library.users().put(user.getAccountID(), user);
-         Library.serialize("JSON_Database/userDatabase.json", Library.users());
+         users().put(user.getAccountID(), user);
+         serialize("JSON_Database/userDatabase.json", users());
          System.out.println("User ID=" + user.getAccountID() + " was added to the Library database.");
     }
     
     public static void addStaff(Staff staff)
     {
-         Library.staffs().put(staff.getAccountID(), staff);
-         Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());
+         staffs().put(staff.getAccountID(), staff);
+         serialize("JSON_Database/staffDatabase.json", staffs());
          System.out.println("Staff ID=" + staff.getAccountID() + " was added to the Library database");
     }
     
     public static void addSupplier(Supplier supplier)
     {
-         Library.suppliers().put(supplier.getAccountID(), supplier);
-         Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());
+         suppliers().put(supplier.getAccountID(), supplier);
+         serialize("JSON_Database/supplierDatabase.json", suppliers());
          System.out.println("Supplier ID=" + supplier.getAccountID() + "was added to the Library database.");
     }
     
     public static void removeUser(int userId)
     {
-        if (Library.users().containsKey(userId)) {
-            Library.users().remove(userId);
-            Library.serialize("JSON_Database/userDatabase.json", Library.users());
+        if (users().containsKey(userId)) {
+            users().remove(userId);
+            serialize("JSON_Database/userDatabase.json", users());
             System.out.println("User ID=" + userId + "was removed from the Library database.");
         } else {
             System.out.println("User ID=" + userId + " does not exist in the Library database.");
@@ -127,9 +126,9 @@ public class Library {
     
     public static void removeStaff(int staffId)
     {
-         if (Library.staffs().containsKey(staffId)) {
-            Library.staffs().remove(staffId);
-            Library.serialize("JSON_Database/staffDatabase.json", Library.staffs());  
+         if (staffs().containsKey(staffId)) {
+            staffs().remove(staffId);
+            serialize("JSON_Database/staffDatabase.json", staffs());  
             System.out.println("Staff ID=" + staffId + "was removed from the Library database.");
         } else {
             System.out.println("Staff ID=" + staffId + " does not exist in the Library database.");
@@ -138,9 +137,9 @@ public class Library {
     
     public static void removeSupplier(int supplierId)
     {
-          if (Library.suppliers().containsKey(supplierId)) {
-            Library.suppliers().remove(supplierId);
-            Library.serialize("JSON_Database/supplierDatabase.json", Library.suppliers());  
+          if (suppliers().containsKey(supplierId)) {
+            suppliers().remove(supplierId);
+            serialize("JSON_Database/supplierDatabase.json", suppliers());  
             System.out.println("Supplier ID=" + supplierId + "was removed from the Library database.");
         } else {
             System.out.println("Supplier ID=" + supplierId + " does not exist in the Library database.");
@@ -148,14 +147,15 @@ public class Library {
     }
     
     
-    public static void updateBookAvailability(int bookID, boolean isAvailable) {
+    public static void lendBook(int bookID, boolean isAvailable) {
         if (books().containsKey(bookID)) {
             Book book = books().get(bookID);
             book.setAvailable(isAvailable);
         }
     }
 
-    /* DATABASE GETTERS */
+    // Database Getter Methods
+    
     public static Hashtable<Integer, Book> books()
     {
         return bookDatabase;

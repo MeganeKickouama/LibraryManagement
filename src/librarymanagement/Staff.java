@@ -68,15 +68,6 @@ public class Staff extends Account {
             Library.serialize("JSON_Database/userDatabase.json", Library.books());
      }
 
-    public void lendBook(int userId, int bookId) 
-    {
-        //LEND A BOOK TO A LIST OF USER
-    
-        if (Library.users().containsKey(userId)) {
-        
-        }
-    }
-    
     public void addMember(User member) 
     {
         if (member.isMember() == true) {

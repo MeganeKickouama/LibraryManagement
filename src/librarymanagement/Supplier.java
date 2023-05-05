@@ -21,7 +21,8 @@ public class Supplier extends Account{
         this.supplierName=name;
     }
     
-    public void sellBook(int bookID, int quantity, int price){
+    public void sellBook(int bookID, int quantity, int price)
+    {
         Book book = Library.books().get(bookID);
         
         if (!Library.books().containsKey(bookID)) {
@@ -39,7 +40,8 @@ public class Supplier extends Account{
         }
     }
     
-    public String getBookTitleByID(int bookID) {
+    public String getBookTitleByID(int bookID) 
+    {
         if (Library.books().containsKey(bookID)) {
             Book book = Library.books().get(bookID);
             return book.getTitle();
@@ -47,19 +49,23 @@ public class Supplier extends Account{
         return null;
     }
 
-    public String getSupplierName() {
+    public String getSupplierName() 
+    {
         return supplierName;
     }
 
-    public void setSupplierName(String supplierName) {
+    public void setSupplierName(String supplierName) 
+    {
         this.supplierName = supplierName;
     }
 
-    public int getBalance() {
+    public int getBalance() 
+    {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(int balance) 
+    {
         this.balance = balance;
     }
     
