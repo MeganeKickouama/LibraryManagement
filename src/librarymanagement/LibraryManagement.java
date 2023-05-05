@@ -23,7 +23,7 @@ public class LibraryManagement {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
   
-        int id= 1234; //change first digit to either 1,2,3 to test all menu
+        int id= 2234; //change first digit to either 1,2,3 to test all menu
         String password= "temp";
         
         // Ask the user to enter their login credentials
@@ -45,104 +45,104 @@ public class LibraryManagement {
         int subChoice = 0;
 
         if (mainChoice == 1){
-        do {
-            Staff staff = new Staff(id, password);
-            System.out.println("\nStaff Menu:\n1. Add a book and safe in file\n2. Search for a book\n3. Mark a book as reserved or not reserved"+
-            "\n4. Modify Book information\n5. Lend book to list of users\n6. Add a member\n7. Exit");
-            System.out.print("Enter your choice: ");
-            subChoice = input.nextInt();
-           
-            switch (subChoice) {
-                
-                case 1:
-                    //Sys
-                    //staff.addBook(book);
-                    break;
-                case 2:
-                    // Code for Sub-menu 2
-                    break;
-                case 3:
-                    // Code for Sub-menu 3
-                    break;
-                case 4:
-                    // Code for Sub-menu 3
-                    break;
-                case 5:
-                    // Code for Sub-menu 3
-                    break;
-                case 6:
-                    // Code for Sub-menu 3
-                    break;
-                case 7:
-                    System.out.println("Exiting program...");
-                    subChoice = 7;
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-            
-        } while (subChoice != 7);
-        return;
+            do {
+                Staff staff = new Staff(id, password);
+                System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book\n3. Mark a book as reserved or not reserved"+
+                "\n4. Modify Book information\n5. Lend book to list of users\n6. Add a member\n7. Exit");
+                System.out.print("Enter your choice: ");
+                subChoice = input.nextInt();
+
+                switch (subChoice) {
+
+                    case 1:
+                        //Sys
+                        //staff.addBook(book);
+                        break;
+                    case 2:
+                        // Code for Sub-menu 2
+                        break;
+                    case 3:
+                        // Code for Sub-menu 3
+                        break;
+                    case 4:
+                        // Code for Sub-menu 3
+                        break;
+                    case 5:
+                        // Code for Sub-menu 3
+                        break;
+                    case 6:
+                        // Code for Sub-menu 3
+                        break;
+                    case 7:
+                        System.out.println("Exiting program...");
+                        subChoice = 7;
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+
+            } while (subChoice != 7);
         }
         
         else if (mainChoice == 2){
-        do {
-            Supplier supplier = new Supplier(id, password);
-            System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Exit");
-            System.out.print("Enter your choice: ");
-            subChoice = input.nextInt();
-           
-            switch (subChoice) {
-                
-                case 1:
-                    // Code for Sub-menu 1
-                    break;
-                case 2:
-                    // Code for Sub-menu 2
-                    break;
-                case 3:
-                    System.out.println("Exiting program...");
-                    subChoice = 3;
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-            
-        } while (subChoice != 3);
-        return;
+            do {
+                Supplier supplier = new Supplier(id, password);
+                System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Exit");
+                System.out.print("Enter your choice: ");
+                subChoice = input.nextInt();
+
+                switch (subChoice) {
+
+                    case 1:
+                        // Code for Sub-menu 1
+                        System.out.println("Enter book ID your looking for: ");
+                        int bookID = input.nextInt();
+                        supplier.searchBook(bookID);
+                        break;
+                    case 2:
+                        // Code for Sub-menu 2
+                        break;
+                    case 3:
+                        System.out.println("Exiting program...");
+                        subChoice = 3;
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+
+            } while (subChoice != 3);
         }
         
         else if (mainChoice == 3){
-        do {
-            User user = new User(id, password);
-            System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book\n4. Return a book\n5. Exit");
-            System.out.print("Enter your choice: ");
-            subChoice = input.nextInt();
-           
-            switch (subChoice) {
-                
-                case 1:
-                    // Code for Sub-menu 1
-                    break;
-                case 2:
-                    // Code for Sub-menu 2
-                    break;
-                case 3:
-                    // Code for Sub-menu 3
-                    break;
-                case 4:
-                    // Code for Sub-menu 4
-                    break;
-                case 5:
-                    System.out.println("Exiting program...");
-                    subChoice = 5;
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-            
-        } while (subChoice != 5);
-        return;
+            do {
+                User user = new User(id, password);
+                System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book\n4. Return a book\n5. Exit");
+                System.out.print("Enter your choice: ");
+                subChoice = input.nextInt();
+
+                switch (subChoice) {
+
+                    case 1:
+                        // Code for Sub-menu 1
+                        break;
+                    case 2:
+                        // Code for Sub-menu 2
+                        break;
+                    case 3:
+                        // Code for Sub-menu 3
+                        break;
+                    case 4:
+                        // Code for Sub-menu 4
+                        break;
+                    case 5:
+                        System.out.println("Exiting program...");
+                        subChoice = 5;
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+
+            } while (subChoice != 5);
         }
 
               
