@@ -1,15 +1,14 @@
 package librarymanagement;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
  
 import java.util.Hashtable;
+
 /**
- *
- * @author hqara
+ * @author szakr
  * @author kmega
+ * @author hqara
+ * @author scol
  */
+
 public class Staff extends Account implements LogIn {
     
      private String firstName;
