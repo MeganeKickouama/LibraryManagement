@@ -65,11 +65,28 @@ public class Staff extends Account implements LogIn {
      public void markBookReserved(Book book) 
      {
         if (book.isReserved() == true) {
+            System.out.println("This book is already reserved.");
             return; // Book is already reserved, do nothing
         }
+        else{
             book.setReserved(true);
+            System.out.println("Book is now reserved.");
             Library.books().put(book.getBookID(),book);
             Library.serialize("JSON_Database/userDatabase.json", Library.books());
+        }
+     }
+     public void markBookUnreserved(Book book) 
+     {
+        if (book.isReserved() == false) {
+            System.out.println("This book is already unreserved.");
+            return; // Book is already unreserved, do nothing
+        }
+        else{
+            book.setReserved(false);
+            System.out.println("Book is now unreserved.");
+            Library.books().put(book.getBookID(),book);
+            Library.serialize("JSON_Database/userDatabase.json", Library.books());
+        }
      }
 
     public void addMember(User member) 
