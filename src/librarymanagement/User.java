@@ -11,12 +11,17 @@ package librarymanagement;
  * @author hqara
  * @author scol
  */
-public class User extends Account{
+public class User extends Account implements LogIn{
 
     private String firstName;
     private String lastName;
     protected boolean isMember = false; // by default, users are not members
     
+    public User(int accountID, String password) 
+    {
+        super(accountID, password);
+    }
+      
     public User(int accountID, String password, String fname, String lname) 
     {
         super(accountID, password);
@@ -72,7 +77,7 @@ public class User extends Account{
     {
         if (Library.books().containsKey(bookId)) {
            Book book = Library.books().get(bookId);
-           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+           System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
         }
         System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
@@ -131,5 +136,9 @@ public class User extends Account{
        return String.format("User_ID=%d, Last_Name=%s, First_Name=%s, Is_Member=%b", 
                super.getAccountID(), lastName, firstName, isMember);
     }
-   
+
+    public int AccountLoggedIn() 
+    {
+        return 3;
+    }
 }

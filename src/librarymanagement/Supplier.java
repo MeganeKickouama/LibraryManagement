@@ -10,11 +10,16 @@ package librarymanagement;
  * @author szakr
  * @author scol
  */
-public class Supplier extends Account{
+public class Supplier extends Account implements LogIn{
     
     private String supplierName;
     private int balance;
 
+    public Supplier(int accountID, String password) 
+    {
+        super(accountID, password);
+    }
+      
     public Supplier(int accountID, String password, String name) 
     {
         super(accountID, password);
@@ -54,7 +59,7 @@ public class Supplier extends Account{
     {
         if (Library.books().containsKey(bookId)) {
            Book book = Library.books().get(bookId);
-           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+           System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
         }
         System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
@@ -85,4 +90,9 @@ public class Supplier extends Account{
     {
        return String.format("Supplier_ID=%d, Name=%s, Balance=%d", super.getAccountID(), supplierName, balance); 
     }    
+
+    public int AccountLoggedIn() 
+    {
+        return 2;
+    }
 }

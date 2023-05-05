@@ -10,10 +10,15 @@ import java.util.Hashtable;
  * @author hqara
  * @author kmega
  */
-public class Staff extends Account {
+public class Staff extends Account implements LogIn {
     
      private String firstName;
      private String lastName;
+     
+     public Staff(int accountID, String password) 
+     {
+        super(accountID, password);
+     }
      
      public Staff(int accountID, String password, String fname, String lname) 
      {
@@ -116,6 +121,11 @@ public class Staff extends Account {
     public String toString()
     {
        return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s", super.getAccountID(), lastName, firstName); 
+    }
+
+    public int AccountLoggedIn() 
+    {
+        return 1;
     }
 
 }
