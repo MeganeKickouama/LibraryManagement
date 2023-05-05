@@ -119,6 +119,9 @@ public class LibraryManagement {
         
         System.out.println("Sell Book Test"); //Sarah testing
         suppliertest.sellBook(2, 2, 10);
+        System.out.println("Check book quantity");
+        System.out.println(Library.books().toString());
+        System.out.println("Check supplier balance");
         System.out.println(Library.suppliers().toString());
         
         //Won't work because quantity is over book quantity
