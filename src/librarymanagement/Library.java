@@ -143,21 +143,11 @@ public class Library {
         }
     }
     
-    public static void lendBook(int bookID, boolean isAvailable) 
-    {
-        if (books().containsKey(bookID)) {
-            Book book = books().get(bookID);
-            book.setAvailable(isAvailable);
-        }
-    }
-    
-    //THIS IS FOR HARDCODING PURPOSES
-    
     public static void addBook(Book book)
     {
          books().put(book.getBookID(), book);
          serialize("JSON_Database/bookDatabase.json", books());
-         //System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
+         // System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
     }
     
     public static void removeBook(Book bookId)
@@ -192,6 +182,5 @@ public class Library {
     {
         return userDatabase;
     }
-
 
 }

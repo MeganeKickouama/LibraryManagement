@@ -23,7 +23,7 @@ public class Supplier extends Account implements LogIn{
         this.supplierName=name;
     }
     
-    public void sellBook(int bookID, int quantity, int price)
+    public void sellBook(int bookID, int quantity, double price)
     {
         Book book = Library.books().get(bookID);
         
@@ -38,7 +38,8 @@ public class Supplier extends Account implements LogIn{
 
             double revenue = quantity * price;
             balance += revenue;
-            System.out.println("Sold " + quantity + " copies of " + getBookTitleByID(bookID) + " for a total revenue of $" + revenue + ".");
+            System.out.println("Sold " + quantity + " copies of " + getBookTitleByID(bookID)
+                    + " for a total revenue of $" + revenue + ".");
         }
     }
     
@@ -46,9 +47,10 @@ public class Supplier extends Account implements LogIn{
     public void searchBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
-           System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
+           System.out.print("Found: "+Library.books().get(bookId).toString());
+        } else {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
-        System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
     
     // Getter methods
@@ -85,7 +87,8 @@ public class Supplier extends Account implements LogIn{
     @Override
     public String toString()
     {
-       return String.format("Supplier_ID=%d, Name=%s, Balance=$%4.2f\n", super.getAccountID(), supplierName, balance); 
+       return String.format("Supplier_ID=%d, Name=%s, Balance=$%4.2f\n", 
+               super.getAccountID(), supplierName, balance); 
     }    
 
     @Override

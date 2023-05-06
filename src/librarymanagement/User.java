@@ -25,7 +25,7 @@ public class User extends Account implements LogIn{
         this.lastName=lname;
     }
     
-    //Send request to get membership, then a staff employee will add user as a member
+    // Send request to upgrade as a member
     public void applyForMembership()
     {
         this.isMember = true;
@@ -33,32 +33,37 @@ public class User extends Account implements LogIn{
                 "\nto an official member as soon as possible. We appreciate your interest in our library.");
     }
     
-    public void borrowBook(int bookID, String borrowerName)
+    
+    public void borrowBook(int bookId) 
     {
-        if (!Library.books().containsKey(bookID)) {
-            System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
+        if (!Library.books().containsKey(bookId)) {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        } else if (!Library.books().get(bookId).isAvailable()) {
+            System.out.println("The book " + getBookTitleByID(bookId) + " is already borrowed by someone else.");
+        } else {
+            if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
+            book.setAvailable(false);
         }
-        else if (!Library.books().get(bookID).isAvailable() == true) {
-            System.out.println("Sorry " + borrowerName + ", the book " + getBookTitleByID(bookID) + " is already borrowed by someone else.");
-        }
-        else{
-            Library.lendBook(bookID, false);
-            System.out.println(borrowerName + " is borrowing the book " + getBookTitleByID(bookID) + ".");
+            System.out.println("The book " + getBookTitleByID(bookId) + " has been successfully borrowed.");
         }
     }
 
+
     //Return a book
-    public void returnBook(int bookID, String borrowerName)
+    public void returnBook(int bookId)
     {
-        if (!Library.books().containsKey(bookID)) {
-            System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
+        if (!Library.books().containsKey(bookId)) {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
-        else if (Library.books().get(bookID).isAvailable() == true) {
-        System.out.println("The book " + getBookTitleByID(bookID) + " has not been borrowed yet.");
-        }
-        else{
-            Library.lendBook(bookID, true);
-            System.out.println("The book " + getBookTitleByID(bookID) + " has been returned by " + borrowerName + ".");
+        else if (Library.books().get(bookId).isAvailable() == true) {
+        System.out.println("The book " + getBookTitleByID(bookId) + " has not been borrowed yet.");
+        } else {
+                if (Library.books().containsKey(bookId)) {
+                    Book book = Library.books().get(bookId);
+                    book.setAvailable(true);
+                    System.out.println("The book " + getBookTitleByID(bookId) + " has been returned.");
+               }
         }
     }
     
@@ -66,9 +71,10 @@ public class User extends Account implements LogIn{
     public void searchBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
-           System.out.println("Book ID="+bookId+"("+ getBookTitleByID(bookId) +") is available in the Library.");
-        }
+           System.out.print("Found: "+Library.books().get(bookId).toString());
+        } else {
         System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        }
     }
     
     // Getter methods

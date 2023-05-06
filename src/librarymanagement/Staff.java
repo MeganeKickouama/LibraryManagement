@@ -56,6 +56,7 @@ public class Staff extends Account implements LogIn {
             // Update the book in the hashtable
             Library.books().remove(bookId);
             Library.books().put(bookId, book);
+            Library.serialize("JSON_Database/bookDatabase.json", Library.books());
             System.out.println("Book ID=" + bookId + " has been updated with the new information.");
             } else {
                 System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
@@ -66,7 +67,7 @@ public class Staff extends Account implements LogIn {
     {
         Book book = Library.books().get(bookId);
         if (book != null) {
-            if (book.isReserved()) {
+            if (book.isReserved() == true) {
                 System.out.println("This book is already reserved.");
             } else {
                 book.setReserved(true);
@@ -83,11 +84,11 @@ public class Staff extends Account implements LogIn {
     {
         Book book = Library.books().get(bookId);
         if (book != null) {
-            if (book.isReserved()) {
+            if (book.isReserved() == false) {
                 System.out.println("This book is already unreserved.");
             } else {
                 book.setReserved(false);
-                System.out.println("Book is now reserved.");
+                System.out.println("Book is now unreserved.");
                 Library.books().put(book.getBookID(), book);
                 Library.serialize("JSON_Database/userDatabase.json", Library.books());
             }
@@ -111,17 +112,39 @@ public class Staff extends Account implements LogIn {
         Library.serialize("JSON_Database/userDatabase.json", Library.users());
         System.out.println("User ID=" + userId + " is officially registered as a member.");
     }
+     
+
+      public void lendBook(int bookId) 
+    {
+        if (!Library.books().containsKey(bookId)) {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        } else if (!Library.books().get(bookId).isAvailable()) {
+            System.out.println("The book " + getBookTitleByID(bookId) + " is already lent to someone else.");
+        } else {
+          
+            if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
+            book.setAvailable(false);
+        }
+            System.out.println("The book " + getBookTitleByID(bookId) + " has been successfully lent.");
+        }
+    }
+
     
     @Override
     public void searchBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
-           Book book = Library.books().get(bookId);
-           System.out.println("Book ID="+bookId+"("+book.getTitle()+") is available in the Library.");
+            Book book = Library.books().get(bookId);
+            if (Library.books().containsKey(bookId)){
+                System.out.print("Found: "+Library.books().get(bookId).toString());
+            }
+        } else {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
-        System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
     }
     
+
     // Getter methods
   
     public String getFirstName() 
@@ -134,6 +157,14 @@ public class Staff extends Account implements LogIn {
         return lastName;
     }
   
+    public String getBookTitleByID(int bookId) 
+    {
+        if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
+            return book.getTitle();
+        }
+        return null;
+    }
    
     // Setter methods
     
