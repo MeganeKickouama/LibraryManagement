@@ -135,10 +135,7 @@ public class Staff extends Account implements LogIn {
     public void searchBook(int bookId) 
     {
         if (Library.books().containsKey(bookId)) {
-            Book book = Library.books().get(bookId);
-            if (Library.books().containsKey(bookId)){
-                System.out.print("Found: "+Library.books().get(bookId).toString());
-            }
+            System.out.print("Found: " + Library.books().get(bookId).toString());
         } else {
             System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
