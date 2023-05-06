@@ -1,7 +1,6 @@
 package librarymanagement;
  
 import java.util.Hashtable;
-import librarymanagement.User;
 /**
  * @author szakr
  * @author kmega
@@ -97,21 +96,23 @@ public class Staff extends Account implements LogIn {
         }
     }
 
-     public void addMember(int userId) 
-     {
-        User member = (User) Library.users().get(userId);
-        if (member == null) {
-            System.out.println("User ID=" + userId + " does not exist in the Library database");
+    public void addMember(User user) {
+        int userId = user.getAccountID();
+        String userIdStr = String.valueOf(userId);
+        if (!userIdStr.startsWith("3")) {
+            System.out.println("Failed to add user to the Library database. Assigned User ID must start with 3.");
             return;
         }
-        if (member.isMember()) {
-            return; // User is already a member, do nothing
+        if (Library.users().containsKey(userId)) {
+            System.out.println("Failed to add user to the Library database. User ID=" + userId + " already exists in the Library database.");
+            return;
         }
-        member.applyForMembership();
-        Library.users().put(member.getAccountID(), member);
+        Library.users().put(userId, user);
         Library.serialize("JSON_Database/userDatabase.json", Library.users());
-        System.out.println("User ID=" + userId + " is officially registered as a member.");
+        System.out.println("User ID=" + userId + " was added to the Library database.");
     }
+
+
      
 
       public void lendBook(int bookId) 

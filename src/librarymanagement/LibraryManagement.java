@@ -18,7 +18,7 @@ public class LibraryManagement {
      * @param args the command line arguments
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         // Hardcode Existing Staffs, Suppliers, Users and Books
         
@@ -158,19 +158,14 @@ public class LibraryManagement {
                         break;
                     case 4:
                         // Modify book info
-                        System.out.print("Enter Book ID: ");
-                        int bookId = input.nextInt();
-                        if (Library.books().containsKey(bookId)){
-                            //Before modification
-                            System.out.print(Library.books().get(bookId).toString());
+                            System.out.print("Enter Book ID: ");
+                            int bookId = input.nextInt();
+                            staff.searchBook(bookId);
                             System.out.print("Enter new Title: ");
                             String newTitle = input.next();
                             System.out.print("Enter new Author: ");
                             String newAuthor = input.next();
                             staff.modifyBook(bookId, newTitle, newAuthor);
-                        } else{
-                            System.out.print("Book ID="+bookId+" does not exist in the Library database.");
-                        }
                         break;
                     case 5:
                         //Lend book to list of users
@@ -180,9 +175,15 @@ public class LibraryManagement {
                         break;
                     case 6:
                         //Add a member
-                        System.out.print("Enter User ID: ");
-                        int userID = input.nextInt();
-                        staff.addMember(userID);
+                        System.out.print("New User ID: ");
+                        int userId = input.nextInt();
+                        System.out.print("New User Password: ");
+                        String password = input.next();
+                        System.out.print("New User First Name: ");
+                        String fname = input.next();
+                        System.out.print("New User Last Name: ");
+                        String lname = input.next();
+                        staff.addMember(new User(userId, password, fname, lname));
                         break;
                     case 7: 
                         // Show updated library database
@@ -259,7 +260,13 @@ public class LibraryManagement {
                         break;
                     case 2:
                         // Apply for membership
-                        user.applyForMembership();
+                        System.out.print("Enter your ID: ");
+                        int userid = input.nextInt();
+                        if (userid == enteredID){
+                            user.applyForMembership(userid);
+                        } else {
+                            System.out.print("Incorrect User ID: Registration failed.");
+                        }
                         break;
                     case 3:
                         // Borrow a book

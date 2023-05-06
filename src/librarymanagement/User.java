@@ -6,6 +6,7 @@ package librarymanagement;
  * @author hqara
  * @author scol
  */
+import static librarymanagement.Library.users;
 
 public class User extends Account implements LogIn{
 
@@ -25,12 +26,22 @@ public class User extends Account implements LogIn{
         this.lastName=lname;
     }
     
-    // Send request to upgrade as a member
-    public void applyForMembership()
+    // Register as an official member
+    public void applyForMembership(int userId) 
     {
-        this.isMember = true;
-        System.out.println("Thank you for your application. Our staff will review your request and upgrade your account"+
-                "\nto an official member as soon as possible. We appreciate your interest in our library.");
+        User member = (User) Library.users().get(userId);
+        if (member == null) {
+            System.out.println("User ID=" + userId + " does not exist in the Library database");
+            return;
+        }
+        if (member.isMember() == true) {
+            System.out.println("User ID=" + userId + " is already registered as a member.");
+            return; // User is already a member, do nothing
+        }
+        member.requestMembership();
+        Library.users().put(member.getAccountID(), member);
+        Library.serialize("JSON_Database/userDatabase.json", Library.users());
+        System.out.println("User ID=" + userId + " is officially registered as a member.");
     }
     
     
@@ -95,7 +106,6 @@ public class User extends Account implements LogIn{
         }
         return null;
     }
-    
 
     public String getFirstName() 
     {
@@ -112,6 +122,11 @@ public class User extends Account implements LogIn{
         return isMember;
     }
     
+    public void requestMembership()
+    {
+        this.isMember = true;
+    }
+    
     // Setter methods
     public void setFirstName(String firstName) 
     {
@@ -123,6 +138,10 @@ public class User extends Account implements LogIn{
         this.lastName = lastName;
     }
 
+    public boolean setMember(boolean isMember) 
+    {
+        return isMember;
+    }
     
     @Override
     public String toString()
