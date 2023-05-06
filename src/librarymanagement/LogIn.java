@@ -20,19 +20,16 @@ class LogInFactory {
         if (accountIdStr.startsWith("1") && Library.staffs().containsKey(accountId)
                 && Library.staffs().get(accountId).getPassword().equals(password)) {
             Account staff = new Staff(accountId, password);
-            Library.staffs().put(accountId, staff);
             System.out.println("Staff ID=" + accountId + " logged in successfully");
             return staff;
         } else if (accountIdStr.startsWith("2") && Library.suppliers().containsKey(accountId)
                 && Library.suppliers().get(accountId).getPassword().equals(password)) {
             Account supplier = new Supplier(accountId, password);
-            Library.suppliers().put(accountId, supplier);
             System.out.println("Supplier ID=" + accountId + " logged in successfully");
             return supplier;
         } else if (accountIdStr.startsWith("3") && Library.users().containsKey(accountId)
                 && Library.users().get(accountId).getPassword().equals(password)) {
             Account user = new User(accountId, password);
-            Library.users().put(accountId, user);
             System.out.println("User ID=" + accountId + " logged in successfully");
             return user;
         }

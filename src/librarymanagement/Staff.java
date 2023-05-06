@@ -1,7 +1,7 @@
 package librarymanagement;
  
 import java.util.Hashtable;
-
+import librarymanagement.User;
 /**
  * @author szakr
  * @author kmega
@@ -62,41 +62,54 @@ public class Staff extends Account implements LogIn {
             }
      }
 
-     public void markBookReserved(Book book) 
-     {
-        if (book.isReserved() == true) {
-            System.out.println("This book is already reserved.");
-            return; // Book is already reserved, do nothing
-        }
-        else{
-            book.setReserved(true);
-            System.out.println("Book is now reserved.");
-            Library.books().put(book.getBookID(),book);
-            Library.serialize("JSON_Database/userDatabase.json", Library.books());
-        }
-     }
-     public void markBookUnreserved(Book book) 
-     {
-        if (book.isReserved() == false) {
-            System.out.println("This book is already unreserved.");
-            return; // Book is already unreserved, do nothing
-        }
-        else{
-            book.setReserved(false);
-            System.out.println("Book is now unreserved.");
-            Library.books().put(book.getBookID(),book);
-            Library.serialize("JSON_Database/userDatabase.json", Library.books());
-        }
-     }
-
-    public void addMember(User member) 
+    public void markBookReserved(int bookId) 
     {
-        if (member.isMember() == true) {
+        Book book = Library.books().get(bookId);
+        if (book != null) {
+            if (book.isReserved()) {
+                System.out.println("This book is already reserved.");
+            } else {
+                book.setReserved(true);
+                System.out.println("Book is now reserved.");
+                Library.books().put(book.getBookID(), book);
+                Library.serialize("JSON_Database/userDatabase.json", Library.books());
+            }
+        } else {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        }
+    }
+
+    public void markBookUnreserved(int bookId) 
+    {
+        Book book = Library.books().get(bookId);
+        if (book != null) {
+            if (book.isReserved()) {
+                System.out.println("This book is already unreserved.");
+            } else {
+                book.setReserved(false);
+                System.out.println("Book is now reserved.");
+                Library.books().put(book.getBookID(), book);
+                Library.serialize("JSON_Database/userDatabase.json", Library.books());
+            }
+        } else {
+            System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
+        }
+    }
+
+     public void addMember(int userId) 
+     {
+        User member = (User) Library.users().get(userId);
+        if (member == null) {
+            System.out.println("User ID=" + userId + " does not exist in the Library database");
+            return;
+        }
+        if (member.isMember()) {
             return; // User is already a member, do nothing
         }
-            member.applyForMembership();
-            Library.users().put(member.getAccountID(),member);
-            Library.serialize("JSON_Database/userDatabase.json", Library.users());
+        member.applyForMembership();
+        Library.users().put(member.getAccountID(), member);
+        Library.serialize("JSON_Database/userDatabase.json", Library.users());
+        System.out.println("User ID=" + userId + " is officially registered as a member.");
     }
     
     @Override
@@ -120,7 +133,8 @@ public class Staff extends Account implements LogIn {
     {
         return lastName;
     }
-    
+  
+   
     // Setter methods
     
     public void setFirstName(String firstName) 

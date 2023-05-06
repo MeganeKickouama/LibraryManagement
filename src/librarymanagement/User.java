@@ -29,7 +29,8 @@ public class User extends Account implements LogIn{
     public void applyForMembership()
     {
         this.isMember = true;
-        System.out.println("Congratulations, you are now a member!");
+        System.out.println("Thank you for your application. Our staff will review your request and upgrade your account"+
+                "\nto an official member as soon as possible. We appreciate your interest in our library.");
     }
     
     public void borrowBook(int bookID, String borrowerName)
@@ -80,15 +81,16 @@ public class User extends Account implements LogIn{
         return false;
      }
     
-    public String getBookTitleByID(int bookID) 
+    public String getBookTitleByID(int bookId) 
     {
-        if (Library.books().containsKey(bookID)) {
-            Book book = Library.books().get(bookID);
+        if (Library.books().containsKey(bookId)) {
+            Book book = Library.books().get(bookId);
             return book.getTitle();
         }
         return null;
     }
     
+
     public String getFirstName() 
     {
         return firstName;

@@ -12,16 +12,23 @@ import static librarymanagement.Book.nextID;
  * @author scol
  */
 
+
 public class LibraryManagement {
 
     /**
      * @param args the command line arguments
      */
+    public static void showLibraryDatabase(){
+        System.out.println("Staffs Database:\n"+Library.staffs().toString());
+        System.out.println("Suppliers database:\n"+Library.suppliers().toString());
+        System.out.println("Users database:\n"+Library.users().toString());
+        System.out.println("Books database:\n"+Library.books().toString());
+    }
     
     public static void main(String[] args) {
         
             
-        // Hardcode Existing Users, Staffs and Suppliers
+        // Hardcode Existing Staffs, Suppliers, Users and Books
         
         //Staffs
         Staff staff1 = new Staff(1111, "staff", "Cornelia", "Chirita");
@@ -29,7 +36,6 @@ public class LibraryManagement {
         Staff staff3 = new Staff(1113, "staff", "Syed", "Afzal");
         Staff staff4 = new Staff(1114, "staff", "Pejman", "Azadi");
         Staff staff5 = new Staff(1115, "staff", "Mehdi", "Farzad");
-
         Staff staffs[] = {staff1, staff2, staff3, staff4, staff5};
         for (Staff staffDatabase : staffs) 
         {
@@ -44,7 +50,6 @@ public class LibraryManagement {
         Supplier supplier3 = new Supplier(2223, "supplier", "Vanier");
         Supplier supplier4 = new Supplier(2224, "supplier", "Dawson");
         Supplier supplier5 = new Supplier(2225, "supplier", "JAC");
-        
         Supplier suppliers[] = {supplier1, supplier2, supplier3, supplier4, supplier5};
         for (Supplier supplierDatabase : suppliers) 
         {
@@ -59,21 +64,19 @@ public class LibraryManagement {
         User user3 = new User(3333, "user", "Sadaf", "Zakria");
         User user4 = new User(3334, "user", "Mégane", "Kickouama");
         User user5 = new User(3335, "user", "Yu", "Jiang");
-
         User users[] = {user1, user2, user3, user4, user5};
         for (User userDatabase : users) 
         {
             Library.addUser(userDatabase);
         };
         System.out.println("Existing users in database:\n"+Library.users().toString());
-
-        // Hardcode Books for Library
+        
+        // Books
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
         Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13.25, 6);
         Book book4 = new Book(nextID(), "Dune", "Frank Herbert", 7.95, 2);
         Book book5 = new Book(nextID(), "Outliers", "Malcolm Gladwell", 15.25, 1);
-
         Book books[] = {book1, book2, book3, book4, book5};
         for (Book bookDatabase : books) 
         {
@@ -84,11 +87,6 @@ public class LibraryManagement {
         
         Scanner input = new Scanner(System.in);
   
-        
-        
-        
-        
-        
         // Ask the user to enter their login credentials
         System.out.println("\nPlease enter your account ID and password to login:");
               
@@ -120,8 +118,8 @@ public class LibraryManagement {
             do {
                 Staff staff = new Staff(enteredID, enteredPassword);
                 System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book"+
-                        "\n3. Mark a book as reserved or not reserved\n4. Modify Book information+"+
-                        "\n5. Lend book to list of users\n6. Add a member\n7. Exit");
+                        "\n3. Mark a book as reserved or not reserved\n4. Modify Book information"+
+                        "\n5. Lend book to list of users\n6. Add a member\n7. Show Library Database\n8. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
 
@@ -129,13 +127,13 @@ public class LibraryManagement {
 
                     case 1:
                         //add book + save in file
-                        System.out.println("Book name: ");
+                        System.out.print("Book name: ");
                         String name = input.next();
-                        System.out.println("Author: ");
+                        System.out.print("Author: ");
                         String author = input.next();
-                        System.out.println("Price: ");
+                        System.out.print("Price: ");
                         double price = input.nextDouble();
-                        System.out.println("Quantity: ");
+                        System.out.print("Quantity: ");
                         int quantity = input.nextInt();
                         
                         //new Book(nextID(), name, author, price, quantity);
@@ -157,17 +155,16 @@ public class LibraryManagement {
                             switch (input.nextInt()) {
                                 case 1:
                                     
-                                        Book bookReserve = Library.books().get(bookid);
-                                        staff.markBookReserved(bookReserve);
-                                    
-                                   
+                                        //Book bookReserve = Library.books().get(bookid);
+                                        staff.markBookReserved(bookid);
+                                        
                                     break;
                                     
                                 case 2:
                                     
-                                        Book bookUnreserve = Library.books().get(bookid);
-                                        staff.markBookUnreserved(bookUnreserve);
-                                    
+                                        //Book bookUnreserve = Library.books().get(bookid);
+                                        staff.markBookUnreserved(bookid);
+                                        
                                    
                                     break;
                                 default:
@@ -175,12 +172,12 @@ public class LibraryManagement {
                             }
                         }
                         else{
-                            System.out.println("This Book ID does not exist in our library.");
+                            System.out.print("This Book ID does not exist in our library.");
                         }
                         break;
                     case 4:
                         // modify book info
-                        System.out.println("Enter Book ID: ");
+                        System.out.print("Enter Book ID: ");
                         int bookId = input.nextInt();
                         if (Library.books().containsKey(bookId)){
                             //Before mods
@@ -203,28 +200,28 @@ public class LibraryManagement {
                         break;
                     case 6:
                         //Add a member
-                        System.out.println("Enter User ID: ");
+                        System.out.print("Enter User ID: ");
                         int userID = input.nextInt();
-                        
-                        //User userMember = 
-                        
-                        //staff.addMember(userMember);
+                        staff.addMember(userID);
                         break;
-                    case 7:
+                    case 7: 
+                        showLibraryDatabase();
+                        break;
+                    case 8:
                         System.out.println("Exiting program...");
-                        subChoice = 7;
+                        subChoice = 8;
                         break;
                     default:
                         System.out.println("Invalid choice.");
                 }
 
-            } while (subChoice != 7);
+            } while (subChoice != 8);
         }
         
         else if (mainChoice == 2){
             do {
                 Supplier supplier = new Supplier(enteredID, enteredPassword);
-                System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Exit");
+                System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Show Library Database\n4. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
 
@@ -232,7 +229,7 @@ public class LibraryManagement {
 
                     case 1:
                         // Code for Sub-menu 1
-                        System.out.println("Enter book ID your looking for: ");
+                        System.out.print("Enter book ID your looking for: ");
                         int bookID = input.nextInt();
                         supplier.searchBook(bookID);
                         break;
@@ -240,21 +237,24 @@ public class LibraryManagement {
                         // Code for Sub-menu 2
                         break;
                     case 3:
+                        showLibraryDatabase();
+                        break; 
+                    case 4:
                         System.out.println("Exiting program...");
-                        subChoice = 3;
+                        subChoice = 4;
                         break;
                     default:
                         System.out.println("Invalid choice.");
                 }
 
-            } while (subChoice != 3);
+            } while (subChoice != 4);
         }
         
         else if (mainChoice == 3){
             do {
                 User user = new User(enteredID, enteredPassword);
                 System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book"+
-                        "\n4. Return a book\n5. Exit");
+                        "\n4. Return a book\n5. Show Library Database\n6. Exit");
                 System.out.print("Enter your choice: ");
                 subChoice = input.nextInt();
 
@@ -264,7 +264,7 @@ public class LibraryManagement {
                         // Code for Sub-menu 1
                         break;
                     case 2:
-                        // Code for Sub-menu 2
+                        user.applyForMembership();
                         break;
                     case 3:
                         // Code for Sub-menu 3
@@ -273,14 +273,17 @@ public class LibraryManagement {
                         // Code for Sub-menu 4
                         break;
                     case 5:
+                        showLibraryDatabase();
+                        break;
+                    case 6:
                         System.out.println("Exiting program...");
-                        subChoice = 5;
+                        subChoice = 6;
                         break;
                     default:
                         System.out.println("Invalid choice.");
                 }
 
-            } while (subChoice != 5);
+            } while (subChoice != 6);
         }
 
              
