@@ -12,7 +12,7 @@ public class User extends Account implements LogIn{
 
     private String firstName;
     private String lastName;
-    protected boolean isMember = false; // by default, users are not members
+    private boolean isMember = false; // by default, users are not members
     
     public User(int accountID, String password) 
     {

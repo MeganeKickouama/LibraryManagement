@@ -14,8 +14,8 @@ public class Book {
     private double price;
     private int quantity;
     private static int count = 0;
-    protected boolean isReserved = false; // by default, only a staff employee can mark up a book as reserved
-    protected boolean isAvailable = true; // by default, book is available until a staff employee lend the book to a registered user
+    private boolean isReserved = false; // by default, only a staff employee can mark up a book as reserved
+    private boolean isAvailable = true; // by default, book is available until a staff employee lend the book to a registered user
         
     public Book(int id, String title, String author, double price, int quantity)
     {
