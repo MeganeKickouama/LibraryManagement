@@ -2,7 +2,6 @@ package librarymanagement;
 
 import java.io.*;
 import java.util.Scanner;
-//import static librarymanagement.Library;
 import static librarymanagement.Book.nextID;
 
 /**
@@ -18,16 +17,9 @@ public class LibraryManagement {
     /**
      * @param args the command line arguments
      */
-    public static void showLibraryDatabase(){
-        System.out.println("Staffs Database:\n"+Library.staffs().toString());
-        System.out.println("Suppliers database:\n"+Library.suppliers().toString());
-        System.out.println("Users database:\n"+Library.users().toString());
-        System.out.println("Books database:\n"+Library.books().toString());
-    }
-    
+
     public static void main(String[] args) {
         
-            
         // Hardcode Existing Staffs, Suppliers, Users and Books
         
         //Staffs
@@ -41,7 +33,6 @@ public class LibraryManagement {
         {
             Library.addStaff(staffDatabase);
         };
-        
         System.out.println("Existing staff employees in database:\n"+Library.staffs().toString());
 
         // Suppliers
@@ -69,7 +60,7 @@ public class LibraryManagement {
         {
             Library.addUser(userDatabase);
         };
-        System.out.println("Existing users in database:\n"+Library.users().toString());
+        //System.out.println("Existing users in database:\n"+Library.users().toString());
         
         // Books
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
@@ -82,8 +73,9 @@ public class LibraryManagement {
         {
             Library.addBook(bookDatabase);
         };
-        System.out.println("Existing books in database:\n"+Library.books().toString());
+        //System.out.println("Existing books in database:\n"+Library.books().toString());
         
+        Library.showLibraryDatabase();
         
         Scanner input = new Scanner(System.in);
   
@@ -194,7 +186,7 @@ public class LibraryManagement {
                         break;
                     case 7: 
                         // Show updated library database
-                        showLibraryDatabase();
+                        Library.showLibraryDatabase();
                         break;
                     case 8:
                         // Exit program
@@ -235,7 +227,7 @@ public class LibraryManagement {
                         break;
                     case 3:
                         // Show updated library database 
-                        showLibraryDatabase();
+                        Library.showLibraryDatabase();
                         break; 
                     case 4:
                         // Exit program
@@ -282,7 +274,7 @@ public class LibraryManagement {
                         user.returnBook(bookid);
                         break;
                     case 5:
-                        showLibraryDatabase();
+                        Library.showLibraryDatabase();
                         break;
                     case 6:
                         System.out.println("Exiting program...");

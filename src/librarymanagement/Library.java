@@ -160,6 +160,14 @@ public class Library {
             System.out.println("Book ID=" + bookId + " does not exist in the Library database.");
         }
     }
+    
+    public static void showLibraryDatabase()
+    {
+        //System.out.println("Staffs database:\n"+Library.staffs().toString());
+        //System.out.println("Suppliers database:\n"+Library.suppliers().toString());
+        System.out.println("Users database:\n"+Library.users().toString());
+        System.out.println("Books database:\n"+Library.books().toString());
+    }
 
     // Database Getter Methods
     
