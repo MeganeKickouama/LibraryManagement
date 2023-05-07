@@ -10,7 +10,7 @@ import static librarymanagement.Book.nextID;
  * @author hqara
  * @author scol
  */
-public class LibraryManagement  {
+public class LibraryManagement {
 
     /**
      * @param args the command line arguments
@@ -40,7 +40,6 @@ public class LibraryManagement  {
         for (Supplier supplierDatabase : suppliers) {
             Library.addSupplier(supplierDatabase);
         };
-
         System.out.println("Existing suppliers in database:\n" + Library.suppliers().toString());
 
         // Users
@@ -49,25 +48,40 @@ public class LibraryManagement  {
         User user3 = new User(3333, "user", "Sadaf", "Zakria");
         User user4 = new User(3334, "user", "Mégane", "Kickouama");
         User user5 = new User(3335, "user", "Yu", "Jiang");
+        Library.addUser(user1);
+        Library.addUser(user2);
+        Library.addUser(user3);
+        Library.addUser(user4);
+        Library.addUser(user5);
+        /*
         User users[] = {user1, user2, user3, user4, user5};
         for (User userDatabase : users) {
             Library.addUser(userDatabase);
         };
         System.out.println("Existing users in database:\n" + Library.users().toString());
-
+        */
+        
         // Books
-
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
         Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13.25, 6);
         Book book4 = new Book(nextID(), "Dune", "Frank Herbert", 7.95, 2);
         Book book5 = new Book(nextID(), "Outliers", "Malcolm Gladwell", 15.25, 1);
-        Book books[] = {book1, book2, book3, book4, book5};
+        Library.addBook(book1);
+        Library.addBook(book2);
+        Library.addBook(book3);
+        Library.addBook(book4);
+        Library.addBook(book5);
+        
+        /*Book books[] = {book1, book2, book3, book4, book5};
         for (Book bookDatabase : books) {
             Library.addBook(bookDatabase);
         };
         System.out.println("Existing books in database:\n" + Library.books().toString());
-
+        */
+        
+        Library.showLibraryDatabase();
+        
         Scanner input = new Scanner(System.in);
 
         while (true) {
@@ -99,21 +113,22 @@ public class LibraryManagement  {
                 return;
             }
             LogIn login = (LogIn) account;
-            int mainChoice = login.AccountLoggedIn();
-            int subChoice = 0;
+            int accountType = login.AccountLoggedIn();
+            int menuChoice = 0;
 
-            if (mainChoice == 1) {
+            // STAFF MENU
+            if (accountType == 1) {
                 do {
 
-                     try { 
+                    try {
                         Staff staff = new Staff(enteredID, enteredPassword);
                         System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book"
                                 + "\n3. Mark a book as reserved or not reserved\n4. Modify Book information"
                                 + "\n5. Lend book to list of users\n6. Add a member\n7. Show Library Database\n8. Exit");
                         System.out.print("Enter your choice: ");
-                        subChoice = input.nextInt();
+                        menuChoice = input.nextInt();
 
-                        switch (subChoice) {
+                        switch (menuChoice) {
 
                             case 1:
                                 // Add a book and save in file
@@ -188,29 +203,31 @@ public class LibraryManagement  {
                             case 8:
                                 // Exit program
                                 System.out.println("Exiting program...");
-                                subChoice = 8;
+                                menuChoice = 8;
                                 break;
                             default:
                                 System.out.println("Invalid choice.");
                                 break;
                         }
-                   } catch (Exception e) {
-                         System.out.println("Invalid Input, please try again");                        
-                         input.nextLine();
-                         subChoice = -1;
-                        
-                   } 
+                    } catch (Exception e) {
+                        System.out.println("Invalid Input, please try again");
+                        input.nextLine();
+                        menuChoice = -1;
 
-                } while (subChoice != 8);
-            } else if (mainChoice == 2) {
+                    }
+
+                } while (menuChoice != 8);
+                
+            //SUPPLIER MENU
+            } else if (accountType == 2) {
                 do {
-                    try { 
+                    try {
                         Supplier supplier = new Supplier(enteredID, enteredPassword);
                         System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Show Library Database\n4. Exit");
                         System.out.print("Enter your choice: ");
-                        subChoice = input.nextInt();
+                        menuChoice = input.nextInt();
 
-                        switch (subChoice) {
+                        switch (menuChoice) {
 
                             case 1:
                                 // Search for a book
@@ -235,30 +252,32 @@ public class LibraryManagement  {
                             case 4:
                                 // Exit program
                                 System.out.println("Exiting program...");
-                                subChoice = 4;
+                                menuChoice = 4;
                                 break;
                             default:
                                 System.out.println("Invalid choice.");
+                                break;
                         }
                     } catch (Exception e) {
-                         System.out.println("Invalid Input, please try again");                        
-                         input.nextLine();
-                         subChoice = -1;
-                        
-                   }
+                        System.out.println("Invalid Input, please try again");
+                        input.nextLine();
+                        menuChoice = -1;
 
-                } while (subChoice != 4);
+                    }
 
-            } else if (mainChoice == 3) {
+                } while (menuChoice != 4);
+            
+            // USER MENU
+            } else if (accountType == 3) {
                 do {
                     try {
                         User user = new User(enteredID, enteredPassword);
                         System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book"
                                 + "\n4. Return a book\n5. Show Library Database\n6. Exit");
                         System.out.print("Enter your choice: ");
-                        subChoice = input.nextInt();
+                        menuChoice = input.nextInt();
 
-                        switch (subChoice) {
+                        switch (menuChoice) {
 
                             case 1:
                                 // Search for a book
@@ -292,25 +311,26 @@ public class LibraryManagement  {
                                 Library.showLibraryDatabase();
                                 break;
                             case 6:
+                                // Exit the program
                                 System.out.println("Exiting program...");
-                                subChoice = 6;
+                                menuChoice = 6;
                                 break;
                             default:
                                 System.out.println("Invalid choice.");
+                                break;
                         }
                     } catch (Exception e) {
-                         System.out.println("Invalid Input, please try again");                        
-                         input.nextLine();
-                         subChoice = -1;
-                        
-                   }
+                        System.out.println("Invalid Input, please try again");
+                        input.nextLine();
+                        menuChoice = -1;
 
-                } while (subChoice != 6);
+                    }
+
+                } while (menuChoice != 6);
             }
-            
-            
+
         }
-        
+
     }
 
 }

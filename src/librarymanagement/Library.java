@@ -40,13 +40,51 @@ public class Library {
         return instance;
     }
 
+    public static void append(String file, Hashtable database) 
+    {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+
+            if (file.contains("book")) {
+                Hashtable<Integer, Book> temp = new Hashtable<>();
+                File existingFile = new File(file);
+
+                if (existingFile.exists()) {
+                    temp = mapper.readValue(existingFile, new TypeReference<Hashtable<Integer, Book>>() {
+                    });
+                }
+
+                temp.putAll(database);
+                mapper.writerWithDefaultPrettyPrinter().writeValue(existingFile, temp);
+            } else if (file.contains("staff") || file.contains("user") || file.contains("supplier")) {
+                Hashtable<Integer, Account> temp = new Hashtable<>();
+                File existingFile = new File(file);
+
+                if (existingFile.exists()) {
+                    temp = mapper.readValue(existingFile, new TypeReference<Hashtable<Integer, Account>>() {
+                    });
+                }
+
+                temp.putAll(database);
+                mapper.writerWithDefaultPrettyPrinter().writeValue(existingFile, temp);
+            } else {
+                System.out.println("Invalid file type.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    
     // Convert obj to JSONobj
     public static void serialize(String file, Hashtable database)
     {
         try 
         {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY); // makes it so that you don't need a setter or getter
+            mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY); 
             mapper.writeValue(Paths.get(file).toFile(), database);
 
         } catch (Exception e)
@@ -92,7 +130,7 @@ public class Library {
     public static void addUser(User user)
     {
          users().put(user.getAccountID(), user);
-         serialize("JSON_Database/userDatabase.json", users());
+         //serialize("JSON_Database/userDatabase.json", users());
          //System.out.println("User ID=" + user.getAccountID() + " was added to the Library database.");
     }
     
@@ -146,7 +184,7 @@ public class Library {
     public static void addBook(Book book)
     {
          books().put(book.getBookID(), book);
-         serialize("JSON_Database/bookDatabase.json", books());
+         //serialize("JSON_Database/bookDatabase.json", books());
          // System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
     }
     
