@@ -56,6 +56,7 @@ public class LibraryManagement  {
         System.out.println("Existing users in database:\n" + Library.users().toString());
 
         // Books
+
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
         Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13.25, 6);
@@ -104,7 +105,7 @@ public class LibraryManagement  {
             if (mainChoice == 1) {
                 do {
 
-                    // try { AHHHHHHHHHHHHHHH
+                     try { 
                         Staff staff = new Staff(enteredID, enteredPassword);
                         System.out.println("\nStaff Menu:\n1. Add a book and save in file\n2. Search for a book"
                                 + "\n3. Mark a book as reserved or not reserved\n4. Modify Book information"
@@ -193,14 +194,17 @@ public class LibraryManagement  {
                                 System.out.println("Invalid choice.");
                                 break;
                         }
-                   // } catch (InputMismatchException e) {
-                   //     throw new InputMismatchException("Invalid input. Please enter a valid value.");
-                   // } AHHHHHHHHHHHHHHHHHHHHHHH
+                   } catch (Exception e) {
+                         System.out.println("Invalid Input, please try again");                        
+                         input.nextLine();
+                         subChoice = -1;
+                        
+                   } 
 
                 } while (subChoice != 8);
             } else if (mainChoice == 2) {
                 do {
-                    //try { AHHHHHHHHHHHHHHHHHHH
+                    try { 
                         Supplier supplier = new Supplier(enteredID, enteredPassword);
                         System.out.println("\nSupplier Menu:\n1. Search for a book\n2. Sell a book\n3. Show Library Database\n4. Exit");
                         System.out.print("Enter your choice: ");
@@ -236,15 +240,18 @@ public class LibraryManagement  {
                             default:
                                 System.out.println("Invalid choice.");
                         }
-                    //} catch (InputMismatchException e) {
-                    //    throw new InputMismatchException("Invalid input. Please enter a valid value.");
-                    //} AHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                    } catch (Exception e) {
+                         System.out.println("Invalid Input, please try again");                        
+                         input.nextLine();
+                         subChoice = -1;
+                        
+                   }
 
                 } while (subChoice != 4);
 
             } else if (mainChoice == 3) {
                 do {
-                    //try { AHHHHHHHHHHHHHHHHHHH
+                    try {
                         User user = new User(enteredID, enteredPassword);
                         System.out.println("\nUser Menu:\n1. Search for a book\n2. Apply for membership\n3. Borrow a book"
                                 + "\n4. Return a book\n5. Show Library Database\n6. Exit");
@@ -291,14 +298,19 @@ public class LibraryManagement  {
                             default:
                                 System.out.println("Invalid choice.");
                         }
-                    //} catch (InputMismatchException e) {
-                    //    throw new InputMismatchException("Invalid input. Please enter a valid value.");
-                    //} AHHHHHHHHHHHHHHHHHH
+                    } catch (Exception e) {
+                         System.out.println("Invalid Input, please try again");                        
+                         input.nextLine();
+                         subChoice = -1;
+                        
+                   }
 
                 } while (subChoice != 6);
             }
+            
+            
         }
-
+        
     }
 
 }
