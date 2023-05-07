@@ -43,8 +43,6 @@ The Library Management System is a Management Information System (MIS) applicati
 
 ## Usage
 
-\*add screenshots or sample code when done
-
 To use the Library Management System application, you must use one of the following logins:
 
 To use as STAFF:
