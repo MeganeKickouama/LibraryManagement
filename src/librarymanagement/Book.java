@@ -25,6 +25,8 @@ public class Book {
         this.price = price;
         this.quantity = quantity;
     }
+    
+    public Book() {}
 
     public static int nextID()
     {
