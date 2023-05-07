@@ -6,8 +6,6 @@
 - **Features**
 - **Installation**
 - **Usage**
-- **Contributing**
-- **Grading Criteria**
 - **Contact**
 
 ## Description
