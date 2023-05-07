@@ -1,6 +1,6 @@
 package librarymanagement;
  
-import java.util.Hashtable;
+import java.util.HashMap;
 /**
  * @author szakr
  * @author kmega
@@ -24,7 +24,7 @@ public class Staff extends Account implements LogIn {
         this.firstName=fname;
         this.lastName=lname; 
      }
-     
+      
      public void addBook(Book book) 
      {
         Library.books().put(book.getBookID(), book);
@@ -52,7 +52,7 @@ public class Staff extends Account implements LogIn {
             book.setTitle(newTitle);
             book.setAuthor(newAuthor);
                 
-            // Update the book in the hashtable
+            // Update the book in the HashMap
             Library.books().remove(bookId);
             Library.books().put(bookId, book);
             Library.serialize("JSON_Database/bookDatabase.json", Library.books());
