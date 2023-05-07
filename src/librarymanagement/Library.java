@@ -2,6 +2,8 @@ package librarymanagement;
 
 import java.io.*;
 import java.util.Hashtable;
+import java.util.Set;
+import java.util.Map.Entry;
 import java.nio.file.Paths;
 import org.json.simple.JSONObject;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -24,6 +26,8 @@ public class Library {
     private static Hashtable<Integer, Account> userDatabase = new Hashtable<>();
     private static Hashtable<Integer, Account> supplierDatabase = new Hashtable<>();
     private static Hashtable<Integer, Account> staffDatabase = new Hashtable<>();
+    
+    private static ObjectMapper mapper = new ObjectMapper();
 
     private Library()
     {
@@ -83,7 +87,6 @@ public class Library {
     {
         try 
         {
-            ObjectMapper mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY); 
             mapper.writeValue(Paths.get(file).toFile(), database);
 
@@ -99,7 +102,6 @@ public class Library {
         try 
         {
             database.clear();
-            ObjectMapper mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
             // makes it so that you don't need a setter or getter
             
@@ -188,7 +190,7 @@ public class Library {
          // System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
     }
     
-    public static void removeBook(Book bookId)
+    public static void removeBook(int bookId)
     {
          if (books().containsKey(bookId)) {
             staffs().remove(bookId);
@@ -201,10 +203,38 @@ public class Library {
     
     public static void showLibraryDatabase()
     {
-        //System.out.println("Staffs database:\n"+Library.staffs().toString());
-        //System.out.println("Suppliers database:\n"+Library.suppliers().toString());
-        System.out.println("Users database:\n"+Library.users().toString());
-        System.out.println("Books database:\n"+Library.books().toString());
+        System.out.println("\nStaffs database:\n");
+        printAccountDatabase(staffs());
+        
+        System.out.println("\nSuppliers database:\n");
+        printAccountDatabase(suppliers());
+        
+        System.out.println("\nUsers database:\n");
+        printAccountDatabase(users());
+        
+        System.out.println("\nBooks database:\n");
+        printBookDatabase(books());
+        
+    } 
+    
+    private static void printBookDatabase(Hashtable<Integer, Book> hash)
+    {
+        Set<Entry<Integer, Book>> entrySet = hash.entrySet();
+        
+        for(Entry<Integer, Book> entry : entrySet) {
+ 
+            System.out.println("ID=" + entry.getKey() + " " + entry.getValue());
+        }
+    }
+    
+    private static void printAccountDatabase(Hashtable<Integer, Account> hash)
+    {
+        Set<Entry<Integer, Account>> entrySet = hash.entrySet();
+        
+        for(Entry<Integer, Account> entry : entrySet) {
+ 
+            System.out.println("ID=" + entry.getKey() + " " + entry.getValue());
+        }
     }
 
     // Database Getter Methods
