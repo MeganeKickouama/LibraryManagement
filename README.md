@@ -49,41 +49,42 @@ To use the Library Management System application, you must use one of the follow
 
 To use as STAFF:
 
-1. Username: Password:
-2. Username: Password:
-3. Username: Password:
-4. Username: Password:
-5. Username: Password:
-
-To use as USER:
-
-1. Username: Password:
-2. Username: Password:
-3. Username: Password:
-4. Username: Password:
-5. Username: Password:
+1. Username: 1111 Password: staff
+2. Username: 1112 Password: staff
+3. Username: 1113 Password: staff
+4. Username: 1114 Password: staff
+5. Username: 1115 Password: staff
 
 To use as SUPPLIER:
 
-1. Username: Password:
-2. Username: Password:
-3. Username: Password:
-4. Username: Password:
-5. Username: Password:
+1. Username: 2221 Password: supplier
+2. Username: 2222 Password: supplier
+3. Username: 2223 Password: supplier
+4. Username: 2224 Password: supplier
+5. Username: 2225 Password: supplier
+
+To use as USER:
+
+1. Username: 3331 Password: user
+2. Username: 3332 Password: user
+3. Username: 3333 Password: user
+4. Username: 3334 Password: user
+5. Username: 3335 Password: user
+
 
 Each type of Account has a unique menu, curated for their specific needs.
 
 STAFF
 
-\*insert screenshot of staff menu
+<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655938-89e5f9e3-2df3-40be-97be-c17024aadb8f.png">
 
 USER
 
-\*insert screenshot of staff menu
+<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655962-a3ac86cf-bb69-46c9-ad2a-94686009cd80.png">
 
 SUPPLIER
 
-\*insert screenshot of staff menu
+<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655950-12c67a9f-ec23-4441-b827-2065ff3a3fa9.png">
 
 ## Contact
 
