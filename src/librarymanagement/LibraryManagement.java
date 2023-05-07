@@ -17,6 +17,12 @@ public class LibraryManagement {
      */
     public static void main(String[] args) {
 
+        Library.deserialize("JSON_Database/staffDatabase.json", Library.staffs());
+        Library.deserialize("JSON_Database/supplierDatabase.json", Library.suppliers());
+        Library.deserialize("JSON_Database/userDatabase.json", Library.users());
+        Library.deserialize("JSON_Database/bookDatabase.json", Library.books());
+        
+        /*
         // Hardcode Existing Staffs, Suppliers, Users and Books
         //Staffs
         Staff staff1 = new Staff(1111, "staff", "Cornelia", "Chirita");
@@ -61,6 +67,7 @@ public class LibraryManagement {
         System.out.println("Existing users in database:\n" + Library.users().toString());
         */
         
+        /*
         // Books
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
@@ -95,7 +102,8 @@ public class LibraryManagement {
             if (!(Library.staffs().containsKey(enteredID) && Library.staffs().get(enteredID).getPassword().equals(enteredPassword))
                     && !(Library.suppliers().containsKey(enteredID) && Library.suppliers().get(enteredID).getPassword().equals(enteredPassword))
                     && !(Library.users().containsKey(enteredID) && Library.users().get(enteredID).getPassword().equals(enteredPassword))) {
-                System.out.println("Invalid username or password. Default IDs for Staff, Supplier, and User account types start with 1, 2, and 3"
+                System.out.println("Invalid username or password. Default IDs for Staff, "
+                        + "Supplier, and User account types start with 1, 2, and 3"
                         + "\nrespectively, and the default password for all account types is the lowercase account type name.");
                 System.out.print("Would you like to try again? (Y/N): ");
                 String choice = input.next();
