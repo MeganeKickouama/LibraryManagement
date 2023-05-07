@@ -16,7 +16,7 @@ The Library Management System is a Management Information System (MIS) applicati
 
 - Programming Language used is JAVA
 - Object-oriented design principles are followed.
-- Design patterns and data structure concepts taught in the classroom have
+- Design patterns and data structure concepts taught in the classroom (ex. singleton, factory and etc.)
 - Data is saved in JSON files
 - The project has an interface that allows users to log in with a password as one of the following system users: (Library Staff, User, Supplier)
 - Library Staff:
