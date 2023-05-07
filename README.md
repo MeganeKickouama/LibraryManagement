@@ -76,15 +76,15 @@ Each type of Account has a unique menu, curated for their specific needs.
 
 STAFF
 
-<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655938-89e5f9e3-2df3-40be-97be-c17024aadb8f.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/102993150/236655938-89e5f9e3-2df3-40be-97be-c17024aadb8f.png">
 
 USER
 
-<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655962-a3ac86cf-bb69-46c9-ad2a-94686009cd80.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/102993150/236655962-a3ac86cf-bb69-46c9-ad2a-94686009cd80.png">
 
 SUPPLIER
 
-<img width="268" alt="image" src="https://user-images.githubusercontent.com/102993150/236655950-12c67a9f-ec23-4441-b827-2065ff3a3fa9.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/102993150/236655950-12c67a9f-ec23-4441-b827-2065ff3a3fa9.png">
 
 ## Contact
 
