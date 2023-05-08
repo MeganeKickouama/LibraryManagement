@@ -17,6 +17,7 @@ public class Book {
     private boolean isReserved = false; // by default, only a staff employee can mark up a book as reserved
     private boolean isAvailable = true; // by default, book is available until a staff employee lend the book to a registered user
         
+    
     public Book(int id, String title, String author, double price, int quantity)
     {
         this.bookID = id;

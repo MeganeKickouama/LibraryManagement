@@ -17,12 +17,13 @@ public class LibraryManagement {
      */
     public static void main(String[] args) {
 
+        /*
         Library.deserialize("JSON_Database/staffDatabase.json", Library.staffs());
         Library.deserialize("JSON_Database/supplierDatabase.json", Library.suppliers());
         Library.deserialize("JSON_Database/userDatabase.json", Library.users());
         Library.deserialize("JSON_Database/bookDatabase.json", Library.books());
+        */
         
-        /*
         // Hardcode Existing Staffs, Suppliers, Users and Books
         //Staffs
         Staff staff1 = new Staff(1111, "staff", "Cornelia", "Chirita");
@@ -59,15 +60,15 @@ public class LibraryManagement {
         Library.addUser(user3);
         Library.addUser(user4);
         Library.addUser(user5);
-        /*
+        
         User users[] = {user1, user2, user3, user4, user5};
         for (User userDatabase : users) {
             Library.addUser(userDatabase);
         };
         System.out.println("Existing users in database:\n" + Library.users().toString());
-        */
         
-        /*
+        
+        
         // Books
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
@@ -80,12 +81,12 @@ public class LibraryManagement {
         Library.addBook(book4);
         Library.addBook(book5);
         
-        /*Book books[] = {book1, book2, book3, book4, book5};
+        Book books[] = {book1, book2, book3, book4, book5};
         for (Book bookDatabase : books) {
             Library.addBook(bookDatabase);
         };
         System.out.println("Existing books in database:\n" + Library.books().toString());
-        */
+        
         
         Library.showLibraryDatabase();
         

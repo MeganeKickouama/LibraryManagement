@@ -107,14 +107,46 @@ public class Library {
             if (file.contains("book"))
             {
                 Hashtable<Integer, Book> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
-                database.putAll(temp);
+                Set<Entry<Integer, Book>> entrySet = temp.entrySet();
+        
+                for(Entry<Integer, Book> entry : entrySet) {
+
+                    database.put(entry.getKey(), entry.getValue());
+                }
             }
-            else if (file.contains("staff") || file.contains("user") || file.contains("supplier"))
+            else if (file.contains("staff"))
             {
-                Hashtable<Integer, Account> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
-                database.putAll(temp);
+                Hashtable<Integer, Staff> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                Set<Entry<Integer, Staff>> entrySet = temp.entrySet();
+        
+                for(Entry<Integer, Staff> entry : entrySet) {
+
+                    database.put(entry.getKey(), entry.getValue());
+                }
             }
-            else 
+            else if (file.contains("user"))
+            {
+                Hashtable<Integer, User> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                database.putAll(temp);
+                Set<Entry<Integer, User>> entrySet = temp.entrySet();
+        
+                for(Entry<Integer, User> entry : entrySet) {
+
+                    database.put(entry.getKey(), entry.getValue());
+                }
+            } 
+            else if (file.contains("supplier"))
+            {
+                Hashtable<Integer, Supplier> temp = mapper.readValue(Paths.get(file).toFile(), Hashtable.class);
+                database.putAll(temp);
+                Set<Entry<Integer, Supplier>> entrySet = temp.entrySet();
+        
+                for(Entry<Integer, Supplier> entry : entrySet) {
+
+                    database.put(entry.getKey(), entry.getValue());
+                }
+            } 
+            else
             {
                 Hashtable temp = null;
                 database.putAll(temp);

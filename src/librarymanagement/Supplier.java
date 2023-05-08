@@ -22,7 +22,7 @@ public class Supplier extends Account implements LogIn{
         super(accountID, password);
         this.supplierName=name;
     }
-    
+        
     public void sellBook(int bookID, int quantity, double price)
     {
         Book book = Library.books().get(bookID);
