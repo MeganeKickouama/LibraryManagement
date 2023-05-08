@@ -11,6 +11,7 @@
 ## Description
 
 The Library Management System is a Management Information System (MIS) application designed and implemented by students as part of the 420-310-VA Programming Patterns course. The purpose of this project is to create a solution for real-world library management problems. The MIS application facilitates decision-making, coordination, control, analysis, and visualization of information in an organization.
+<h3> UML Diagram </h3>
 ![LibraryManagementUML](https://user-images.githubusercontent.com/98671902/236873735-3fbe7361-658b-4acd-a162-c20e5c10ea42.png)
 
 ## Features
