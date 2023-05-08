@@ -40,7 +40,7 @@ The Library Management System is a Management Information System (MIS) applicati
 
 1. Clone the repository: '[https://github.com/MeganeKickouama/LibraryManagement](https://github.com/MeganeKickouama/LibraryManagement)'
 2. Download the JAR files in the directory JSON\_Library\_Pls\_Import and add them as external JAR files into the JAVA library.
-Extra - Tutorial to import Project in Netbeans and Eclipse: https://docs.google.com/document/d/1ndyiDOk1M4R2UPr-aU-199akftZ52Cq8t04l18DQq4M/edit.
+- Extra - Tutorial to import Project in Netbeans and Eclipse: https://docs.google.com/document/d/1ndyiDOk1M4R2UPr-aU-199akftZ52Cq8t04l18DQq4M/edit.
 
 ## Usage
 
