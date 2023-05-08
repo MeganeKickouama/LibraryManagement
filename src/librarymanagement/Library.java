@@ -231,7 +231,7 @@ public class Library {
     }
     
     
-    static void printBookDatabase(Hashtable<Integer, Book> hash)
+    private static void printBookDatabase(Hashtable<Integer, Book> hash)
     {
         Set<Entry<Integer, Book>> entrySet = hash.entrySet();
         
@@ -241,7 +241,7 @@ public class Library {
         }
     }
     
-    static void printAccountDatabase(Hashtable<Integer, Account> hash)
+    private static void printAccountDatabase(Hashtable<Integer, Account> hash)
     {
         Set<Entry<Integer, Account>> entrySet = hash.entrySet();
         
