@@ -85,8 +85,7 @@ USER
 
 SUPPLIER
 
-img width="500" alt="image" src="https://user-images.githubusercontent.com/102993150/236877712-7a30f0f7-fa78-4955-85c2-aace294746cd.png">
-
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/102993150/236877712-7a30f0f7-fa78-4955-85c2-aace294746cd.png">
 
 ## Contact
 
