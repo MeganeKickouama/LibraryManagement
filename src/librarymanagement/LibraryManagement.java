@@ -35,7 +35,7 @@ public class LibraryManagement {
         for (Staff staffDatabase : staffs) {
             Library.addStaff(staffDatabase);
         };
-        System.out.println("Existing staff employees in database:\n" + Library.staffs().toString());
+        //System.out.println("Existing staff employees in database:\n" + Library.staffs().toString());
 
         // Suppliers
         Supplier supplier1 = new Supplier(2221, "supplier", "Hani AbuSharkh");
@@ -47,7 +47,7 @@ public class LibraryManagement {
         for (Supplier supplierDatabase : suppliers) {
             Library.addSupplier(supplierDatabase);
         };
-        System.out.println("Existing suppliers in database:\n" + Library.suppliers().toString());
+        //System.out.println("Existing suppliers in database:\n" + Library.suppliers().toString());
 
         // Users
         User user1 = new User(3331, "user", "Hibba", "Qaraman");
@@ -65,7 +65,7 @@ public class LibraryManagement {
         for (User userDatabase : users) {
             Library.addUser(userDatabase);
         };
-        System.out.println("Existing users in database:\n" + Library.users().toString());
+        //System.out.println("Existing users in database:\n" + Library.users().toString());
         
         
         
@@ -83,9 +83,9 @@ public class LibraryManagement {
         
         Book books[] = {book1, book2, book3, book4, book5};
         for (Book bookDatabase : books) {
-            Library.addBook(bookDatabase);
+           Library.addBook(bookDatabase);
         };
-        System.out.println("Existing books in database:\n" + Library.books().toString());
+        //System.out.println("Existing books in database:\n" + Library.books().toString());
         
         
         Library.showLibraryDatabase();
@@ -301,7 +301,7 @@ public class LibraryManagement {
                                 if (userid == enteredID) {
                                     user.applyForMembership(userid);
                                 } else {
-                                    System.out.print("Incorrect User ID: Registration failed.");
+                                    System.out.println("Incorrect User ID: Registration failed.");
                                 }
                                 break;
                             case 3:

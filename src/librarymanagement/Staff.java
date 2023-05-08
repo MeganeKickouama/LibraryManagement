@@ -70,7 +70,7 @@ public class Staff extends Account implements LogIn {
                 System.out.println("This book is already reserved.");
             } else {
                 book.setReserved(true);
-                System.out.println("Book is now reserved.");
+                System.out.println("Book ID=" + bookId +" is now reserved.");
                 Library.books().put(book.getBookID(), book);
                 Library.serialize("JSON_Database/userDatabase.json", Library.books());
             }
@@ -87,7 +87,7 @@ public class Staff extends Account implements LogIn {
                 System.out.println("This book is already unreserved.");
             } else {
                 book.setReserved(false);
-                System.out.println("Book is now unreserved.");
+                System.out.println("Book ID=" + bookId +"is now unreserved.");
                 Library.books().put(book.getBookID(), book);
                 Library.serialize("JSON_Database/userDatabase.json", Library.books());
             }

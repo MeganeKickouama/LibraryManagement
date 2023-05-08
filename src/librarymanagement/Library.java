@@ -163,7 +163,7 @@ public class Library {
     public static void addUser(User user)
     {
          users().put(user.getAccountID(), user);
-         //serialize("JSON_Database/userDatabase.json", users());
+         serialize("JSON_Database/userDatabase.json", users());
          //System.out.println("User ID=" + user.getAccountID() + " was added to the Library database.");
     }
     
@@ -217,8 +217,8 @@ public class Library {
     public static void addBook(Book book)
     {
          books().put(book.getBookID(), book);
-         //serialize("JSON_Database/bookDatabase.json", books());
-         // System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
+         serialize("JSON_Database/bookDatabase.json", books());
+         //System.out.println("Book ID=" + book.getBookID() + " was added to the Library database.");
     }
     
     public static void removeBook(int bookId)
