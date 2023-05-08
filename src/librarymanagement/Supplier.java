@@ -21,23 +21,23 @@ public class Supplier extends Account implements LogIn{
     {
         super(accountID, password);
         this.supplierName=name;
+        this.balance = 0;
     }
         
-    public void sellBook(int bookID, int quantity, double price)
+    public void sellBook(int supplierID, int bookID, int quantity) 
     {
+         Supplier supplier = (Supplier) Library.suppliers().get(supplierID);
+        if (supplier.getAccountID() != supplierID) {
+            System.out.println("Incorrect User ID: Attempt to sell a book failed.");
+            return;
+        }
         Book book = Library.books().get(bookID);
-        
         if (!Library.books().containsKey(bookID)) {
             System.out.println("Book ID=" + bookID + " does not exist in the Library database.");
-        }
-        else if (book.getQuantity() < quantity) {
-            System.out.println("The supplier does not have enough copies of " + getBookTitleByID(bookID) + ".");
-        }
-        else{        
-            book.setQuantity(book.getQuantity() - quantity);
-
-            double revenue = quantity * price;
-            balance += revenue;
+        } else{        
+            book.setQuantity(book.getQuantity() + quantity);
+            double revenue = quantity * book.getPrice();
+            supplier.setBalance(revenue+supplier.getBalance());
             System.out.println("Sold " + quantity + " copies of " + getBookTitleByID(bookID)
                     + " for a total revenue of $" + revenue + ".");
         }
@@ -88,7 +88,7 @@ public class Supplier extends Account implements LogIn{
     public String toString()
     {
        return String.format("Supplier_ID=%d, Name=%s, Balance=$%4.2f\n", 
-               super.getAccountID(), supplierName, balance); 
+               super.getAccountID(), supplierName, getBalance()); 
     }    
 
     @Override

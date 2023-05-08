@@ -78,8 +78,6 @@ public class Library {
             e.printStackTrace();
         }
     }
-
-
     
     // Convert obj to JSONobj
     public static void serialize(String file, Hashtable database)
@@ -232,41 +230,42 @@ public class Library {
         }
     }
     
-    public static void showLibraryDatabase()
-    {
-        System.out.println("\nStaffs database:\n");
-        printAccountDatabase(staffs());
-        
-        System.out.println("\nSuppliers database:\n");
-        printAccountDatabase(suppliers());
-        
-        System.out.println("\nUsers database:\n");
-        printAccountDatabase(users());
-        
-        System.out.println("\nBooks database:\n");
-        printBookDatabase(books());
-        
-    } 
     
-    private static void printBookDatabase(Hashtable<Integer, Book> hash)
+    static void printBookDatabase(Hashtable<Integer, Book> hash)
     {
         Set<Entry<Integer, Book>> entrySet = hash.entrySet();
         
         for(Entry<Integer, Book> entry : entrySet) {
  
-            System.out.println("ID=" + entry.getKey() + " " + entry.getValue());
+            System.out.print("ID=" + entry.getKey() + " " + entry.getValue());
         }
     }
     
-    private static void printAccountDatabase(Hashtable<Integer, Account> hash)
+    static void printAccountDatabase(Hashtable<Integer, Account> hash)
     {
         Set<Entry<Integer, Account>> entrySet = hash.entrySet();
         
         for(Entry<Integer, Account> entry : entrySet) {
  
-            System.out.println("ID=" + entry.getKey() + " " + entry.getValue());
+            System.out.print("ID=" + entry.getKey() + " " + entry.getValue());
         }
     }
+    
+    public static void showLibraryDatabase()
+    {
+        System.out.println("\nStaffs database:");
+        printAccountDatabase(staffs());
+        
+        System.out.println("\nSuppliers database:");
+        printAccountDatabase(suppliers());
+        
+        System.out.println("\nUsers database:");
+        printAccountDatabase(users());
+        
+        System.out.println("\nBooks database:");
+        printBookDatabase(books());
+        
+    } 
 
     // Database Getter Methods
     

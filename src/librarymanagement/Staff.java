@@ -182,6 +182,7 @@ public class Staff extends Account implements LogIn {
        return String.format("Staff_ID=%d, Last_Name=%s, First_Name=%s\n", super.getAccountID(), lastName, firstName); 
     }
 
+    // STAFF CLASS
     @Override
     public int AccountLoggedIn() 
     {

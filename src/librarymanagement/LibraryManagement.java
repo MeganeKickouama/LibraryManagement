@@ -3,6 +3,12 @@ package librarymanagement;
 import java.io.*;
 import java.util.*;
 import static librarymanagement.Book.nextID;
+import static librarymanagement.Library.books;
+import static librarymanagement.Library.users;
+import static librarymanagement.Library.suppliers;
+import static librarymanagement.Library.staffs;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * @author szakr
@@ -17,15 +23,9 @@ public class LibraryManagement {
      */
     public static void main(String[] args) {
 
-        /*
-        Library.deserialize("JSON_Database/staffDatabase.json", Library.staffs());
-        Library.deserialize("JSON_Database/supplierDatabase.json", Library.suppliers());
-        Library.deserialize("JSON_Database/userDatabase.json", Library.users());
-        Library.deserialize("JSON_Database/bookDatabase.json", Library.books());
-        */
+        // Hardcoded Existing Staffs, Suppliers, Users and Books
         
-        // Hardcode Existing Staffs, Suppliers, Users and Books
-        //Staffs
+        //STAFFS
         Staff staff1 = new Staff(1111, "staff", "Cornelia", "Chirita");
         Staff staff2 = new Staff(1112, "staff", "Nagat", "Drawel");
         Staff staff3 = new Staff(1113, "staff", "Syed", "Afzal");
@@ -37,7 +37,7 @@ public class LibraryManagement {
         };
         //System.out.println("Existing staff employees in database:\n" + Library.staffs().toString());
 
-        // Suppliers
+        // SUPPLIERS
         Supplier supplier1 = new Supplier(2221, "supplier", "Hani AbuSharkh");
         Supplier supplier2 = new Supplier(2222, "supplier", "Jakes");
         Supplier supplier3 = new Supplier(2223, "supplier", "Vanier");
@@ -49,7 +49,7 @@ public class LibraryManagement {
         };
         //System.out.println("Existing suppliers in database:\n" + Library.suppliers().toString());
 
-        // Users
+        // USERS
         User user1 = new User(3331, "user", "Hibba", "Qaraman");
         User user2 = new User(3332, "user", "Sarah", "Colantoni");
         User user3 = new User(3333, "user", "Sadaf", "Zakria");
@@ -60,16 +60,9 @@ public class LibraryManagement {
         Library.addUser(user3);
         Library.addUser(user4);
         Library.addUser(user5);
-        
-        User users[] = {user1, user2, user3, user4, user5};
-        for (User userDatabase : users) {
-            Library.addUser(userDatabase);
-        };
         //System.out.println("Existing users in database:\n" + Library.users().toString());
         
-        
-        
-        // Books
+        // BOOKS
         Book book1 = new Book(nextID(), "Twilight", "Stephanie Meyer", 12.99, 4);
         Book book2 = new Book(nextID(), "1984", "George Orwell", 18.98, 7);
         Book book3 = new Book(nextID(), "Beloved", "Toni Morrison", 13.25, 6);
@@ -80,11 +73,6 @@ public class LibraryManagement {
         Library.addBook(book3);
         Library.addBook(book4);
         Library.addBook(book5);
-        
-        Book books[] = {book1, book2, book3, book4, book5};
-        for (Book bookDatabase : books) {
-           Library.addBook(bookDatabase);
-        };
         //System.out.println("Existing books in database:\n" + Library.books().toString());
         
         
@@ -102,11 +90,12 @@ public class LibraryManagement {
             // Check if the entered credentials are valid
             if (!(Library.staffs().containsKey(enteredID) && Library.staffs().get(enteredID).getPassword().equals(enteredPassword))
                     && !(Library.suppliers().containsKey(enteredID) && Library.suppliers().get(enteredID).getPassword().equals(enteredPassword))
-                    && !(Library.users().containsKey(enteredID) && Library.users().get(enteredID).getPassword().equals(enteredPassword))) {
-                System.out.println("Invalid username or password. Default IDs for Staff, "
-                        + "Supplier, and User account types start with 1, 2, and 3"
-                        + "\nrespectively, and the default password for all account types is the lowercase account type name.");
-                System.out.print("Would you like to try again? (Y/N): ");
+                    && !(Library.users().containsKey(enteredID) && Library.users().get(enteredID).getPassword().equals(enteredPassword))) 
+            {
+                System.out.println("Invalid username or password. ( HINT: Default IDs for Staff, Supplier, and User"+
+                        "\naccount types start with 1, 2, and 3 respectively, and the default password for all"+
+                        "\naccount types is the lowercase account type name )");
+                System.out.print("Would you like to try again or exit the program? (Y/N)");
                 String choice = input.next();
                 if (choice.equalsIgnoreCase("N")) {
                     System.out.println("Exiting program...");
@@ -127,6 +116,7 @@ public class LibraryManagement {
 
             // STAFF MENU
             if (accountType == 1) {
+                
                 do {
 
                     try {
@@ -207,7 +197,11 @@ public class LibraryManagement {
                                 break;
                             case 7:
                                 // Show updated library database
-                                Library.showLibraryDatabase();
+                                System.out.println("\nUsers database:");
+                                Library.printAccountDatabase(Library.users());
+
+                                System.out.println("\nBooks database:");
+                                Library.printBookDatabase(Library.books());
                                 break;
                             case 8:
                                 // Exit program
@@ -246,17 +240,21 @@ public class LibraryManagement {
                                 break;
                             case 2:
                                 // Sell a book
+                                System.out.print("Enter your ID: ");
+                                int supplierid = input.nextInt();
                                 System.out.print("Enter Book ID: ");
                                 int bookId = input.nextInt();
                                 System.out.print("Enter Quantity: ");
                                 int quantity = input.nextInt();
-                                System.out.print("Enter Price: $");
-                                double price = input.nextDouble();
-                                supplier.sellBook(bookId, quantity, price);
+                                supplier.sellBook(supplierid, bookId, quantity);
                                 break;
                             case 3:
                                 // Show updated library database 
-                                Library.showLibraryDatabase();
+                                System.out.println("\nSuppliers database:");
+                                Library.printAccountDatabase(Library.suppliers());
+
+                                System.out.println("\nBooks database:");
+                                Library.printBookDatabase(Library.books());
                                 break;
                             case 4:
                                 // Exit program
@@ -317,7 +315,11 @@ public class LibraryManagement {
                                 user.returnBook(bookid);
                                 break;
                             case 5:
-                                Library.showLibraryDatabase();
+                                System.out.println("\nUsers database:");
+                                Library.printAccountDatabase(Library.users());
+
+                                System.out.println("\nBooks database:");
+                                Library.printBookDatabase(Library.books());
                                 break;
                             case 6:
                                 // Exit the program

@@ -149,7 +149,7 @@ public class User extends Account implements LogIn{
        return String.format("User_ID=%d, Last_Name=%s, First_Name=%s, Is_Member=%b\n", 
                super.getAccountID(), lastName, firstName, isMember);
     }
-
+    
     @Override
     public int AccountLoggedIn() 
     {
